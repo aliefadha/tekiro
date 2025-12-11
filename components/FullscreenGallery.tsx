@@ -114,21 +114,17 @@ export default function FullscreenGallery({
 
                     {/* Main Image Container */}
                     <div
-                        className="relative max-w-full max-h-full"
+                        className="relative w-[80vw] h-[80vh]"
                     >
                         {currentImage && !imageError ? (
                             <Image
                                 src={currentImage}
                                 alt={`${productName} - Image ${currentImageIndex + 1}`}
-                                className="max-w-full max-h-full object-contain transition-transform duration-200"
+                                className="object-contain transition-transform duration-200"
                                 fill
-                                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
+                                sizes="80vw"
                                 priority={currentImageIndex === 0}
                                 onError={() => setImageError(true)}
-                                style={{
-                                    objectFit: 'contain',
-                                    objectPosition: 'center'
-                                }}
                             />
                         ) : (
                             <div className="w-full h-full flex items-center justify-center bg-gray-200">

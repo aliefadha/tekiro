@@ -1,4 +1,5 @@
 "use client"
+import { useState } from "react";
 import { Montserrat, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,6 +7,7 @@ import { Autoplay, EffectFade, } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "aos/dist/aos.css";
 import Marquee from "@/components/Marquee";
+import Modal from "@/components/Modal";
 
 import 'swiper/css';
 import 'swiper/css/effect-fade';
@@ -24,6 +26,8 @@ const roboto = Roboto({
 
 
 export default function Home() {
+  const [isModalOpen, setIsModalOpen] = useState(true)
+
   const products = Array.from({ length: 14 }, (_, index) => ({
     id: index + 1,
     name: `Adjustable Wrench (EU Type) #${index + 1}`,
@@ -33,6 +37,13 @@ export default function Home() {
 
   return (
     <>
+      <Modal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        imageSrc="/modal.webp"
+      >
+      </Modal>
+
       <div className="min-h-[87vh] object-contain bg-[url(/hero.webp)] bg-center bg-cover">
         <div className={`${montserrat.className} bg-black/80 min-h-[87vh] flex flex-col items-center justify-end text-center pb-16`}>
           <div className="flex flex-col justify-center text-center gap-10 pb-7">

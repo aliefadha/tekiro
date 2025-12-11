@@ -4,12 +4,31 @@ import path from "path";
 const nextConfig: NextConfig = {
   /* config options here */
   images: {
-    domains: [
-      'localhost',
-      'tekiro.com',
-      'images.unsplash.com',
-      'cdn.shopify.com',
-      'via.placeholder.com'
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'tekiro.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.shopify.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'via.placeholder.com',
+        port: '',
+        pathname: '/**',
+      }
     ]
   },
   turbopack: {
