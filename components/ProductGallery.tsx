@@ -8,8 +8,6 @@ import FullscreenGallery from './FullscreenGallery'
 interface ProductGalleryProps {
     images: string[]
     productName: string
-    width?: number
-    height?: number
     zoomLevel?: number
     className?: string
 }
@@ -17,8 +15,6 @@ interface ProductGalleryProps {
 export default function ProductGallery({
     images,
     productName,
-    width = 432,
-    height = 432,
     zoomLevel = 1.5,
     className = ''
 }: ProductGalleryProps) {
@@ -40,8 +36,7 @@ export default function ProductGallery({
     return (
         <div className={`w-full group ${className}`}>
             <div
-                className="relative overflow-hidden rounded-lg"
-                style={{ width, height }}
+                className="relative overflow-hidden rounded-lg w-[200px] h-[200px] md:w-[400px] md:h-[400px] lg:w-[432px] lg:h-[432px] mx-auto"
                 onMouseEnter={() => setIsZoomed(true)}
                 onMouseLeave={() => setIsZoomed(false)}
                 onMouseMove={(e) => {

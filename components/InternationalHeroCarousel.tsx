@@ -44,7 +44,7 @@ export default function InternationalHeroCarousel({ slides }: InternationalHeroC
                 {slides.map((slide, index) => (
                     <SwiperSlide key={slide.id}>
                         <div className={`flex flex-col ${index % 2 === 0 ? 'lg:flex-row' : 'lg:flex-row-reverse'} w-full min-h-[535px]`}>
-                            <div className="w-full lg:w-1/2 h-72 lg:h-auto relative overflow-hidden">
+                            <div className="hidden lg:block w-full lg:w-1/2 h-72 lg:h-auto relative overflow-hidden">
                                 <Image
                                     src={slide.imageSrc}
                                     alt={slide.imageAlt}
@@ -53,12 +53,12 @@ export default function InternationalHeroCarousel({ slides }: InternationalHeroC
                                     fill
                                 />
                             </div>
-                            <div className="w-full lg:w-1/2 bg-[#85E408] flex flex-col justify-center items-center text-center">
+                            <div className="w-full lg:w-1/2 h-[535px] p-20 lg:p-0 bg-[#85E408] flex flex-col justify-center items-center text-center">
                                 <h1 className={`${montserrat.className} text-3xl font-bold uppercase mb-8 tracking-tight`}>
                                     {slide.title}
                                 </h1>
 
-                                <div className={`${montserrat.className} bg-black text-white font-bold uppercase py-3 px-8 rounded-full mb-8 tracking-wider shadow-sm`}>
+                                <div className={`${montserrat.className} bg-black text-white font-bold uppercase text-xs lg:text-base py-3 px-8 rounded-full mb-8 tracking-wider shadow-sm`}>
                                     {slide.subtitle}
                                 </div>
 

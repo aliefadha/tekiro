@@ -4,6 +4,7 @@ import Image from "next/image";
 import ProductImageCarousel from "@/components/ProductImageCarousel";
 import Link from "next/link";
 import Marquee from "@/components/Marquee";
+import { Metadata } from "next";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -14,6 +15,11 @@ const roboto = Roboto({
     variable: "--font-montserrat",
     subsets: ["latin"]
 });
+
+export const metadata: Metadata = {
+    title: "International - Tekiro",
+    description: "Tekiro® delivers precision, reliability, and high-performance tools for every task. From hand tools to cordless equipment, our products are built to tackle",
+};
 
 export default function InternationalPage() {
     const heroSlides = [
@@ -27,20 +33,12 @@ export default function InternationalPage() {
         },
         {
             id: 2,
-            imageSrc: "/product-hero.webp",
+            imageSrc: "/slide-intl-2.webp",
             imageAlt: "Tekiro Tools quality products",
             title: "Premium Quality",
             subtitle: "Tools you can trust",
             description: "Our products are crafted with precision and durability to meet the highest industry standards for both professional and home use."
         },
-        {
-            id: 3,
-            imageSrc: "/product-hero.webp",
-            imageAlt: "Tekiro Tools innovative solutions",
-            title: "Innovative Solutions",
-            subtitle: "Engineered for performance",
-            description: "We continuously develop cutting-edge tools that combine ergonomic design with advanced technology for superior results."
-        }
     ];
 
     return (
@@ -48,7 +46,7 @@ export default function InternationalPage() {
             <InternationalHeroCarousel slides={heroSlides} />
 
             <div className="bg-black">
-                <div className="flex w-full items-center justify-between max-w-6xl mx-auto py-5 px-10">
+                <div className="grid grid-cols-2 lg:grid-cols-6 w-full place-items-center max-w-6xl mx-auto py-5 px-10">
                     <Image src="/digital-top-brands.webp" width={800} height={800} alt="digital top brands" className="h-28 w-28 object-cover" />
                     <Image src="/brand-choice-award.webp" width={800} height={800} alt="brand choice" className="h-28 w-28 object-cover" />
                     <Image src="/top-brands.webp" width={800} height={800} alt="top brands" className="h-28 w-28 object-cover" />
@@ -59,7 +57,7 @@ export default function InternationalPage() {
             </div>
 
             <div className="p-24 flex flex-col gap-10">
-                <h2 className={`${montserrat.className} font-semibold uppercase text-5xl text-center`}>our product</h2>
+                <h2 className={`${montserrat.className} font-semibold uppercase text-2xl lg:text-5xl text-center`}>our product</h2>
                 <ProductImageCarousel images={["/torque-1.webp", "/torque-1.webp", "/torque-1.webp", "/torque-1.webp", "/torque-1.webp", "/torque-1.webp"]} />
                 <div className="mx-auto">
                     <Link href="/product" className={`${montserrat.className} text-xl font-semibold uppercase border-b-2 pb-2`}>see more</Link>
@@ -69,8 +67,8 @@ export default function InternationalPage() {
             <Marquee text="follow our social media" />
 
             <div>
-                <div className="flex flex-row w-full h-[500px] relative">
-                    <div className="w-7/12 relative bg-black overflow-hidden">
+                <div className="flex flex-row w-full min-h-[500px] relative">
+                    <div className="hidden md:block w-7/12 relative bg-black overflow-hidden">
                         <Image
                             src="/malaysia.webp"
                             alt="cordless"
@@ -78,8 +76,8 @@ export default function InternationalPage() {
                             className="object-cover"
                         />
                     </div>
-                    <div className="w-5/12 bg-black z-10 h-full flex flex-col justify-center">
-                        <div className="bg-[#85E408] w-full p-12 flex flex-col gap-5 -ms-96">
+                    <div className="w-full md:w-5/12 bg-black z-10 h-auto flex flex-col justify-center p-4 lg:p-0">
+                        <div className="bg-[#85E408] w-full p-8 lg:p-12 flex flex-col gap-5 ms-0 md:-ms-48 lg:-ms-96 max-w-3xl">
                             <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                                 malaysia
                             </h1>
@@ -89,10 +87,10 @@ export default function InternationalPage() {
                                 everyday essentials to specialized solutions, ensuring you have access to the best
                                 quality tools for all your tasks.
                             </p>
-                            <div className="flex justify-between bg-black rounded-xl p-8 text-white">
+                            <div className="flex flex-col lg:flex-row justify-between bg-black rounded-md lg:rounded-xl p-4 lg:p-8 text-white">
                                 <div className="space-y-2">
                                     <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h1>
-                                    <div className="flex gap-4">
+                                    <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
@@ -104,7 +102,7 @@ export default function InternationalPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h1>
-                                    <div className="flex gap-4">
+                                    <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
@@ -121,9 +119,17 @@ export default function InternationalPage() {
             </div>
 
             <div>
-                <div className="flex flex-row w-full h-[500px] relative">
-                    <div className="w-5/12 bg-black z-10 h-full flex flex-col justify-center">
-                        <div className="bg-[#85E408] w-full p-12 flex flex-col gap-5 ms-96">
+                <div className="flex flex-row-reverse w-full min-h-[500px] relative">
+                    <div className="hidden md:block w-7/12 relative bg-black overflow-hidden">
+                        <Image
+                            src="/thailand.webp"
+                            alt="cordless"
+                            fill
+                            className="object-cover"
+                        />
+                    </div>
+                    <div className="w-full md:w-5/12 bg-black z-10 h-auto flex flex-col justify-center p-4 lg:p-0">
+                        <div className="bg-[#85E408] w-full p-8 lg:p-12 flex flex-col gap-5 ms-0 md:ms-48 lg:ms-96 max-w-3xl">
                             <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                                 thailand
                             </h1>
@@ -133,10 +139,10 @@ export default function InternationalPage() {
                                 everyday essentials to specialized solutions, ensuring you have access to the best
                                 quality tools for all your tasks.
                             </p>
-                            <div className="flex justify-between bg-black rounded-xl p-8 text-white">
+                            <div className="flex flex-col lg:flex-row justify-between bg-black rounded-md lg:rounded-xl p-4 lg:p-8 text-white">
                                 <div className="space-y-2">
                                     <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h1>
-                                    <div className="flex gap-4">
+                                    <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
@@ -148,7 +154,7 @@ export default function InternationalPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h1>
-                                    <div className="flex gap-4">
+                                    <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
@@ -161,21 +167,12 @@ export default function InternationalPage() {
                             </div>
                         </div>
                     </div>
-                    <div className="w-7/12 relative bg-black overflow-hidden">
-                        <Image
-                            src="/thailand.webp"
-                            alt="cordless"
-                            fill
-                            className="object-cover"
-                        />
-                    </div>
                 </div>
-
-            </div >
+            </div>
 
             <div>
-                <div className="flex flex-row w-full h-[500px] relative">
-                    <div className="w-7/12 relative bg-black overflow-hidden">
+                <div className="flex flex-row w-full min-h-[500px] relative">
+                    <div className="hidden md:block w-7/12 relative bg-black overflow-hidden">
                         <Image
                             src="/sri-lanka.webp"
                             alt="cordless"
@@ -183,8 +180,8 @@ export default function InternationalPage() {
                             className="object-cover"
                         />
                     </div>
-                    <div className="w-5/12 bg-black z-10 h-full flex flex-col justify-center">
-                        <div className="bg-[#85E408] w-full p-12 flex flex-col gap-5 -ms-96">
+                    <div className="w-full md:w-5/12 bg-black z-10 h-auto flex flex-col justify-center p-4 lg:p-0">
+                        <div className="bg-[#85E408] w-full p-8 lg:p-12 flex flex-col gap-5 ms-0 md:-ms-48 lg:-ms-96 max-w-3xl">
                             <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                                 sri lanka
                             </h1>
@@ -194,10 +191,10 @@ export default function InternationalPage() {
                                 everyday essentials to specialized solutions, ensuring you have access to the best
                                 quality tools for all your tasks.
                             </p>
-                            <div className="flex justify-between bg-black rounded-xl p-8 text-white">
+                            <div className="flex flex-col lg:flex-row justify-between bg-black rounded-md lg:rounded-xl p-4 lg:p-8 text-white">
                                 <div className="space-y-2">
                                     <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h1>
-                                    <div className="flex gap-4">
+                                    <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
@@ -209,7 +206,7 @@ export default function InternationalPage() {
                                 </div>
                                 <div className="space-y-2">
                                     <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h1>
-                                    <div className="flex gap-4">
+                                    <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
                                                 <path d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>

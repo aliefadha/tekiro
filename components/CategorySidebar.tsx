@@ -25,7 +25,7 @@ export default function CategorySidebar({
     const [isOpen, setIsOpen] = useState(false);
 
     return (
-        <div className="py-8 px-5 bg-black rounded-md flex flex-col gap-5 h-fit lg:h-full transition-all duration-300">
+        <div className="py-8 px-5 bg-black rounded-md flex flex-col gap-5 h-fit md:h-full transition-all duration-300">
             <div className="flex items-center justify-between">
                 <h1 className={`${montserratClassName} text-[#85E408] text-2xl uppercase font-bold`}>
                     categories
@@ -34,7 +34,7 @@ export default function CategorySidebar({
             </div>
 
             <div className="h-0.5 bg-[#85E408]"></div>
-            <div className={`${isOpen ? "block" : "hidden"} lg:block space-y-5`}>
+            <div className={`${isOpen ? "block" : "hidden"} md:block space-y-5`}>
                 <div className="flex flex-col">
                     {categories.map((category) => {
                         const isActive = currentSlug === category.slug;
@@ -55,7 +55,7 @@ export default function CategorySidebar({
             </div>
             <button
                 onClick={() => setIsOpen(!isOpen)}
-                className="lg:hidden text-[#85E408] self-center"
+                className="md:hidden text-[#85E408] self-center"
             >
                 {isOpen ? <X size={28} /> : <Menu size={28} />}
             </button>

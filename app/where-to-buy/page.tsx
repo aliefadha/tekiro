@@ -19,15 +19,15 @@ export default function WhereToBuyPage() {
         <>
             <div className="min-h-[65vh] object-contain bg-[url(/where-to-buy.webp)] bg-center bg-cover">
                 <div className={`${montserrat.className} bg-black/70 min-h-[65vh] flex flex-col items-center justify-center text-center`}>
-                    <div className="flex flex-col justify-center text-center gap-10 max-w-5xl">
-                        <h1 className="text-white font-semibold text-5xl uppercase">Marketplace & E-commerce Official Store</h1>
+                    <div className="flex flex-col justify-center text-center gap-10 max-w-5xl px-10">
+                        <h1 className="text-white font-semibold text-3xl lg:text-5xl uppercase">Marketplace & E-commerce Official Store</h1>
                     </div>
                 </div>
             </div>
 
             <Marquee text="we are available at" />
 
-            <div className="mt-24 grid grid-cols-4 gap-6 max-w-6xl mx-auto items-center">
+            <div className="mt-24 grid grid-cols-1 md:grid-cols-4 gap-6 max-w-6xl mx-auto items-center px-10">
                 <Link href="https://www.tokopedia.com/ryuofficial" target="_blank" rel="noopener noreferrer">
                     <Image src="/tokopedia-ecom.webp" alt="Tokopedia" width={600} height={400} className="w-3xs" />
                 </Link>

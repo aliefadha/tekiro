@@ -44,8 +44,6 @@ export default async function ProductPage({
                                     '/screwdriver.webp'
                                 ]}
                                 productName="Drive Torque"
-                                width={400}
-                                height={400}
                             />
                         </div>
                         <div className="flex flex-col gap-5">
@@ -92,9 +90,9 @@ export default async function ProductPage({
                 <div className="min-h-[500px] object-contain bg-[url(/product-hero.webp)] bg-top bg-cover">
                     <div className={`${montserrat.className} bg-black/60 min-h-[500px] flex flex-col items-center justify-center text-center py-14 gap-10`}>
                         <div className="flex flex-col justify-center text-center gap-10">
-                            <h1 className="text-white font-semibold text-4xl uppercase">Product Related</h1>
+                            <h1 className="text-white font-semibold text-2xl lg:text-4xl uppercase">Product Related</h1>
                         </div>
-                        <div className="grid grid-cols-3 gap-5 mx-auto w-2/3">
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto w-2/3">
                             {/* TODO: Move it to separated component */}
                             <div
                                 className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-start items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"

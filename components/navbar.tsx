@@ -46,7 +46,7 @@ export default function Navbar() {
 
     return (
         <header className="w-full sticky top-0 z-50">
-            <div className={`${montserrat.className} font-medium w-full bg-[#85E408] text-center text-black p-2.5`}>
+            <div className={`${montserrat.className} font-medium w-full bg-[#85E408] text-center text-black p-1 md:p-2.5`}>
                 <h1>OFFICIAL TEKIRO WEBSITE</h1>
             </div>
             <nav className={`${roboto.variable} z-20 relative w-full bg-black text-white`}>
@@ -165,7 +165,7 @@ export default function Navbar() {
                                         <Link
                                             href={item.href}
                                             onClick={() => setIsMenuOpen(false)}
-                                            className={`block py-3 px-6 text-sm font-bold uppercase hover:bg-gray-900 transition-colors ${active ? "text-[#85E408]" : "text-white"}`}
+                                            className={`block py-3 px-6 text-xs font-bold uppercase hover:bg-gray-900 transition-colors ${active ? "text-[#85E408]" : "text-white"}`}
                                         >
                                             {item.label}
                                         </Link>
