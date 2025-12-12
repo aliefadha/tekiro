@@ -41,16 +41,16 @@ export default function ECataloguePage() {
 
     return (
         <>
-            <div className="flex flex-row w-full min-h-[500px] relative">
-                <div className="w-3/5 relative bg-black">
+            <div className="flex flex-col md:flex-row w-full h-auto md:min-h-[500px] relative">
+                <div className="hidden md:block w-full md:w-3/5 relative bg-black min-h-[300px] md:min-h-0 overflow-hidden">
                     <iframe
                         className="absolute top-1/2 left-1/2 w-[150%] h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                         src="https://www.youtube.com/embed/a4aQ93NEoU0?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1"
                     />
                 </div>
 
-                <div className="w-2/5 bg-black z-10">
-                    <div className="bg-[#85E408] w-full max-w-none px-12 py-24 flex flex-col gap-5 -ms-24 my-24 ">
+                <div className="w-full md:w-2/5 bg-black z-10 p-4 md:p-0">
+                    <div className="bg-[#85E408] w-full max-w-none p-8 lg:p-6 md:px-12 md:py-24 flex flex-col gap-5 md:-ms-24 my-0 md:my-24 ">
                         <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                             E-Catalogue
                         </h1>
@@ -58,7 +58,7 @@ export default function ECataloguePage() {
                 </div>
             </div>
 
-            <div className="py-8 grid grid-cols-4 w-4/5 mx-auto gap-8">
+            <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-4/5 mx-auto gap-8">
                 {catalogues.map((item) => (
                     <div
                         key={item.title}

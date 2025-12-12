@@ -41,14 +41,14 @@ interface ProductImageCarouselProps {
 
 function ImageSlide({ imageSrc }: { imageSrc: string }) {
     return (
-        <div className="flex justify-center items-center p-4">
+        <div className="flex justify-center items-center p-4 bg-white">
             <div className="relative group">
                 <Image
                     src={imageSrc}
                     width={300}
                     height={300}
                     alt="Product Image"
-                    className="w-full h-64"
+                    className="w-full h-full lg:h-64"
                 />
             </div>
         </div>
@@ -56,11 +56,6 @@ function ImageSlide({ imageSrc }: { imageSrc: string }) {
 }
 
 export default function ProductImageCarousel({ images }: ProductImageCarouselProps) {
-    const slides = [];
-    for (let i = 0; i < images.length; i += 3) {
-        slides.push(images.slice(i, i + 3));
-    }
-
     return (
         <>
             <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
@@ -77,15 +72,25 @@ export default function ProductImageCarousel({ images }: ProductImageCarouselPro
                     }}
                     loop={true}
                     slidesPerView={1}
+                    slidesPerGroup={1}
+                    spaceBetween={10}
+                    breakpoints={{
+                        640: {
+                            slidesPerView: 2,
+                            slidesPerGroup: 2,
+                            spaceBetween: 20,
+                        },
+                        1024: {
+                            slidesPerView: 3,
+                            slidesPerGroup: 3,
+                            spaceBetween: 20,
+                        },
+                    }}
                     className="w-full"
                 >
-                    {slides.map((slideImages, index) => (
+                    {images.map((image, index) => (
                         <SwiperSlide key={index}>
-                            <div className="grid grid-cols-3 gap-5 px-4 bg-white">
-                                {slideImages.map((image, imageIndex) => (
-                                    <ImageSlide key={imageIndex} imageSrc={image} />
-                                ))}
-                            </div>
+                            <ImageSlide imageSrc={image} />
                         </SwiperSlide>
                     ))}
                 </Swiper>

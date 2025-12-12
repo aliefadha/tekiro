@@ -48,17 +48,17 @@ function ProductSlide({ product, isActive, onAnimationEnd }: { product: Cordless
     }, [isActive, onAnimationEnd]);
 
     return (
-        <div className="flex flex-row w-full h-[550px] relative">
-            <div className="w-3/5 relative bg-black overflow-hidden">
+        <div className="flex flex-col md:flex-row w-full h-[400px] md:h-[550px] relative items-center justify-center">
+            <div className="hidden md:block w-full md:w-3/5 relative bg-black overflow-hidden h-[200px] md:h-full">
                 <iframe
                     className="absolute top-1/2 left-1/2 w-[150%] h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                     src={product.videoUrl}
                 />
             </div>
 
-            <div className="w-2/5 bg-black z-10 h-full flex flex-col justify-center">
-                <div ref={greenBgRef} className="bg-[#85E408] text-center w-full max-w-none px-12 py-24 flex flex-col gap-5 -ms-60">
-                    <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
+            <div className="w-full md:w-2/5 bg-black z-10 md:h-full flex flex-col justify-center p-4 md:p-0">
+                <div ref={greenBgRef} className="bg-[#85E408] text-center w-full max-w-none p-6 md:px-12 md:py-24 flex flex-col gap-5 md:-ms-60">
+                    <h1 className={`${montserrat.className} font-bold uppercase text-2xl md:text-3xl`}>
                         {product.title}
                     </h1>
                     <p className={`${montserrat.className} text-sm w-3/4 mx-auto font-medium`}>

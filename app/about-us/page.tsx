@@ -49,16 +49,16 @@ export default function AboutUsPage() {
     ];
     return (
         <>
-            <div className="flex flex-row w-full min-h-[650px] relative">
-                <div className="w-3/5 relative bg-black">
+            <div className="flex flex-col md:flex-row w-full h-auto md:min-h-[650px] relative">
+                <div className="hidden md:block w-full md:w-3/5 relative bg-black min-h-[300px] md:min-h-0 overflow-hidden">
                     <iframe
                         className="absolute top-1/2 left-1/2 w-[150%] h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
                         src="https://www.youtube.com/embed/XTeLXE6X7Tk?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1"
                     />
                 </div>
 
-                <div className="w-2/5 bg-black z-10">
-                    <div className="bg-[#85E408] w-full max-w-none px-12 py-24 flex flex-col gap-5 -ms-24 my-24 ">
+                <div className="w-full md:w-2/5 bg-[85E408] lg:bg-black z-10 p-4 md:p-0">
+                    <div className="bg-[#85E408] w-full max-w-none p-8 lg:p-6 md:px-12 md:py-24 flex flex-col gap-5 md:-ms-24 my-0 md:my-24 ">
                         <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                             ABOUT US
                         </h1>
@@ -91,20 +91,20 @@ export default function AboutUsPage() {
                         <div
                             key={feature.id}
                             className={`
-              p-12 rounded-md flex flex-col justify-start h-full gap-4 border-4 border-transparent
+              p-4 lg:p-12 rounded-md flex flex-col justify-start h-full gap-4 border-4 border-transparent
               ${feature.variant === 'dark'
                                     ? 'bg-black text-[#85e408] hover:border-[#85e408]'
                                     : 'bg-[#85e408] text-black hover:border-black'
                                 }
             `}
                         >
-                            <div className="flex">
+                            <div className="flex flex-col lg:flex-row gap-4 items-center text-center lg:items-center">
                                 {/* Icon Wrapper */}
-                                <div className="w-1/6 p-2.5">
+                                <div className="shrink-0 p-0 lg:p-2.5">
                                     {feature.icon}
                                 </div>
                                 {/* Title */}
-                                <h3 className={`${montserrat.className} text-3xl font-bold uppercase leading-tight w-[300px]`}>
+                                <h3 className={`${montserrat.className} text-xl lg:text-3xl font-bold uppercase leading-tight w-full`}>
                                     {feature.title}
                                 </h3>
                             </div>
@@ -120,7 +120,7 @@ export default function AboutUsPage() {
 
             <ProductHeroSection />
 
-            <div className="py-20  w-full mx-auto max-w-6xl flex flex-col gap-20">
+            <div className="py-20 w-full mx-auto max-w-6xl flex flex-col gap-20 px-4 lg:px-0">
                 <div className="flex flex-col gap-5 text-center">
                     <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>Our Achievements</h1>
                     <p className={`${montserrat.className} text-sm font-medium`} >
@@ -130,7 +130,7 @@ export default function AboutUsPage() {
                         Our awards are a testament to the trust and loyalty of our customers, as well as our continuous innovation and pursuit of perfection in the hand tools industry. Thank you for being a part of our journey!
                     </p>
                 </div>
-                <div className="flex w-full items-center justify-between">
+                <div className="grid grid-cols-2 lg:grid-cols-6 w-full mx-auto place-items-center">
                     <Image src="/digital-top-brands.webp" width={800} height={800} alt="digital top brands" className="h-28 w-28 object-cover" />
                     <Image src="/brand-choice-award.webp" width={800} height={800} alt="brand choice" className="h-28 w-28 object-cover" />
                     <Image src="/top-brands.webp" width={800} height={800} alt="top brands" className="h-28 w-28 object-cover" />

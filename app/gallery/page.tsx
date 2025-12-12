@@ -38,7 +38,7 @@ export default function GalleryPage() {
 
     return (
         <>
-            <div className="mx-auto px-24 py-10 flex flex-col gap-5">
+            <div className="mx-auto px-5 lg:px-24 py-5 lg:py-10 flex flex-col gap-5">
                 <h1 className={`${montserrat.className} font-bold text-3xl uppercase`}>Gallery</h1>
 
                 <div className="flex gap-2">

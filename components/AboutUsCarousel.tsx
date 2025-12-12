@@ -18,9 +18,9 @@ import 'swiper/css/pagination';
 
 export default function AboutUsCarousel() {
     return (
-        <div className="flex flex-row w-full h-[640px] relative">
-            <div className="w-2/5 bg-black z-10">
-                <div className={`${montserrat.className} bg-[#85E408] w-full max-w-none px-12 py-24 flex flex-col gap-5 ml-24 my-24 `}>
+        <div className="flex flex-col lg:flex-row w-full min-h-[640px] relative">
+            <div className="w-full lg:w-2/5 bg-black z-10">
+                <div className={`${montserrat.className} bg-[#85E408] w-full max-w-none px-12 py-24 flex flex-col gap-5 ml-0 lg:ml-24 lg:my-24 `}>
                     <h1 className="font-bold uppercase text-3xl">
                         PODCAST TEKIRO TALK
                     </h1>
@@ -41,10 +41,11 @@ export default function AboutUsCarousel() {
                 </div>
             </div>
 
-            <div className="w-3/5 relative bg-[#EAF8F3] flex items-center justify-center">
+            <div className="w-full lg:w-3/5 relative bg-[#EAF8F3] flex items-center justify-center min-h-[300px]">
                 <Swiper
                     effect={'fade'}
                     centeredSlides={true}
+                    loop={true}
                     navigation={{
                         prevEl: '.swiper-button-prev-custom',
                         nextEl: '.swiper-button-next-custom',
@@ -54,7 +55,7 @@ export default function AboutUsCarousel() {
                         el: '.swiper-pagination-custom',
                     }}
                     modules={[Autoplay, Navigation, Pagination]}
-                    className="mySwiper max-h-80 max-w-[600px] mx-auto"
+                    className="mySwiper w-full aspect-video max-w-[200px] lg:max-w-[600px] mx-auto"
                 >
                     <SwiperSlide className="relative h-full overflow-hidden group">
                         <iframe
@@ -86,10 +87,10 @@ export default function AboutUsCarousel() {
                 </Swiper>
 
                 {/* Custom Navigation Buttons */}
-                <button className="swiper-button-prev-custom absolute left-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200">
+                <button className="swiper-button-prev-custom absolute left-4 lg:left-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200">
                     <ChevronLeft size={24} />
                 </button>
-                <button className="swiper-button-next-custom absolute right-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200">
+                <button className="swiper-button-next-custom absolute right-4 lg:right-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200">
                     <ChevronRight size={24} />
                 </button>
             </div>

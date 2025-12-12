@@ -10,10 +10,10 @@ import Image from "next/image";
 
 export default function MissionSwiper() {
     return (
-        <div className="min-h-[600px] object-contain bg-[url(/mission-bg.webp)] bg-center bg-cover">
+        <div className="min-h-[600px] bg-[url(/mission-bg.webp)] bg-center bg-cover">
             <div className="bg-black/60 min-h-[600px] flex flex-col items-center justify-center text-center">
-                <div className="bg-black border-4 border-[#85E408] flex items-center justify-center gap-6 p-8 max-w-6xl mx-auto">
-                    <div className="flex flex-col items-center justify-center gap-5 w-full">
+                <div className="bg-black border-4 border-[#85E408] flex flex-col lg:flex-row items-center justify-center gap-6 p-8 w-full lg:max-w-6xl mx-auto">
+                    <div className="flex flex-col items-center justify-center gap-5 w-full lg:w-1/2">
                         <h1 className="uppercase text-3xl font-bold text-white">our mission</h1>
                         <p className="text-white font-medium text-sm">
                             Our Mission
@@ -23,7 +23,7 @@ export default function MissionSwiper() {
                             the highest standards in product quality and customer satisfaction.
                         </p>
                     </div>
-                    <div className="w-1/2 h-[350px] relative">
+                    <div className="w-full lg:w-1/2 h-[350px] relative">
                         <Swiper
                             effect={'fade'}
                             centeredSlides={true}

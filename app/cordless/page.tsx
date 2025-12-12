@@ -40,15 +40,15 @@ export default function CordlessPage() {
     return (
         <>
             <CordlessCarousel products={cordlessProducts} />
-            <div className="p-24 flex flex-col gap-10">
-                <h2 className={`${montserrat.className} font-semibold uppercase text-5xl text-center`}>our product</h2>
+            <div className="p-5 lg:p-24 flex flex-col gap-10">
+                <h2 className={`${montserrat.className} font-semibold uppercase lg:text-5xl text-2xl text-center`}>our product</h2>
                 <ProductImageCarousel images={["/torque-1.webp", "/torque-1.webp", "/torque-1.webp", "/torque-1.webp", "/torque-1.webp", "/torque-1.webp"]} />
             </div>
             <div>
-                <div className="flex flex-row w-full h-[500px] relative">
-                    <div className="w-2/5 bg-black z-10 h-full flex flex-col justify-center">
-                        <div className="bg-[#85E408] w-3/4 p-12 flex flex-col gap-5 ms-96">
-                            <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
+                <div className="flex flex-col md:flex-row w-full h-auto md:h-[500px] relative">
+                    <div className="w-full md:w-2/5 bg-black z-10 md:h-full flex flex-col justify-center p-4 md:p-0">
+                        <div className="bg-[#85E408] w-full md:w-3/4 p-6 md:p-12 flex flex-col gap-5 md:ms-96" data-aos="fade-right">
+                            <h1 className={`${montserrat.className} font-bold uppercase text-2xl md:text-3xl`}>
                                 EXTREME POWER TO BRAKE YOUR HARD WORK
                             </h1>
                             <p className={`${montserrat.className} text-sm font-medium`}>
@@ -58,7 +58,7 @@ export default function CordlessPage() {
                             </p>
                         </div>
                     </div>
-                    <div className="w-3/5 relative bg-black overflow-hidden">
+                    <div className="hidden md:block w-3/5 relative bg-black overflow-hidden">
                         <Image
                             src="/cordless.webp"
                             alt="cordless"
@@ -69,7 +69,7 @@ export default function CordlessPage() {
                 </div>
                 <Marquee text="XTREME POWER, RIGID AND TOUGH" direction="left" />
             </div>
-            <div className="my-24 max-w-[1300px] mx-auto grid grid-cols-3 gap-5">
+            <div className="my-24 max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-5 p-5">
                 <div className="bg-[#EBF8F3]">
                     <div className="w-full h-56">
                         <iframe className="w-full h-full" src="https://www.youtube.com/embed/kQ_MKlb1NXc??controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=3&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fcontact%2F&vf=1" />

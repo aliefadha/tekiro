@@ -45,7 +45,7 @@ export default function Marquee({
                 {[...Array(repeatCount)].map((_, idx) => (
                     <span
                         key={`${direction}-${idx}`}
-                        className={`${montserrat.className} font-semibold uppercase text-4xl text-center text-white`}
+                        className={`${montserrat.className} font-semibold uppercase text-base lg:text-4xl text-center text-white`}
                     >
                         {textLines.map((line, lineIdx) => (
                             <span key={`${idx}-${lineIdx}`}>
