@@ -14,6 +14,8 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
+import { useLatestProducts } from '@/lib/queries';
+
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"]
@@ -27,13 +29,9 @@ const roboto = Roboto({
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(true)
+  const { data: productsResponse, isLoading } = useLatestProducts()
 
-  const products = Array.from({ length: 14 }, (_, index) => ({
-    id: index + 1,
-    name: `Adjustable Wrench (EU Type) #${index + 1}`,
-    image: "/tekiro-wrench.jpg",
-    href: "/"
-  }));
+  const products = productsResponse?.data || []
 
   return (
     <>
@@ -120,17 +118,34 @@ export default function Home() {
 
       <div className="p-6 md:p-24 flex flex-col gap-10">
         <h2 className={`${montserrat.className} font-bold uppercase text-3xl text-center md:text-left`}>latest product</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
-          {products.map((product) => (
-            <Link key={product.id} href={product.href}>
-              <div>
-                <Image src={product.image} alt={`tekiro-wrench-${product.id}`} width={300} height={450} className="border border-black" />
-                <h2 className={`${montserrat.className} my-2.5 uppercase text-[#6EC1E4]`}>{product.name}</h2>
-                <p className={`${roboto.className} text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium`}>Read more</p>
+        {isLoading ? (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
+            {Array.from({ length: 7 }).map((_, i) => (
+              <div key={i} className="animate-pulse">
+                <div className="bg-gray-200 border border-black w-full h-[450px]" />
+                <div className="h-4 bg-gray-200 mt-2.5 w-3/4" />
               </div>
-            </Link>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
+            {products.map((product: { id: string; name: string; images: string[] }) => (
+              <Link key={product.id} href={`/product/${product.id}`}>
+                <div>
+                  <Image 
+                    src={product.images[0] || '/placeholder.webp'} 
+                    alt={product.name} 
+                    width={300} 
+                    height={450} 
+                    className="border border-black" 
+                  />
+                  <h2 className={`${montserrat.className} my-2.5 uppercase text-[#6EC1E4]`}>{product.name}</h2>
+                  <p className={`${roboto.className} text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium`}>Read more</p>
+                </div>
+              </Link>
+            ))}
+          </div>
+        )}
         <h2 className={`${montserrat.className} text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] mx-auto `}>all products</h2>
       </div>
 

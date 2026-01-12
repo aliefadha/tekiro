@@ -36,3 +36,13 @@ export function useCategories() {
     }
   )
 }
+
+export function useLatestProducts() {
+  return useApiGet(
+    ['latestProducts'],
+    () => fetchApi<{ success: boolean; message: string; data: Array<{ id: string; name: string; images: string[] }> }>('/product/latest'),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
