@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Montserrat, Roboto } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
+import { getCatalogues } from "@/lib/server-api";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -18,26 +19,27 @@ export const metadata: Metadata = {
     description: "Tekiro® delivers precision, reliability, and high-performance tools for every task. From hand tools to cordless equipment, our products are built to tackle",
 };
 
+export default async function ECataloguePage() {
+    let catalogues: Array<{
+        id: string;
+        title: string;
+        file: string;
+        categoryId: string;
+        category?: {
+            id: string;
+            name: string;
+            image: string;
+        };
+    }> = []
 
-export default function ECataloguePage() {
-    const catalogues = [
-        { title: "wrench", image: "/wrench.webp", href: "/wrench.pdf" },
-        { title: "pliers", image: "/pliers.webp", href: "/pliers.pdf" },
-        { title: "automotive", image: "/automotive.webp", href: "/automotive.pdf" },
-        { title: "hex key", image: "/hexkey.webp", href: "/hex-key.pdf" },
-        { title: "screwdriver", image: "/screwdriver.webp", href: "/screwdriver.pdf" },
-        { title: "measurement", image: "/measurement.webp", href: "/measurement.pdf" },
-        { title: "general tools", image: "/general-tools.webp", href: "/general-tools.pdf" },
-        { title: "gardening", image: "/gardening.webp", href: "/gardening.pdf" },
-        { title: "torque", image: "/torque.webp", href: "/torque.pdf" },
-        { title: "air tools", image: "/air-tools.webp", href: "/air-tools.pdf" },
-        { title: "storage", image: "/storage.webp", href: "/storage.pdf" },
-        { title: "tray", image: "/tray.webp", href: "/tray.pdf" },
-        { title: "insulation", image: "/insulation.webp", href: "/insulation.pdf" },
-        { title: "impact socket", image: "/impact-socket.webp", href: "/impact-socket.pdf" },
-        { title: "welding", image: "/welding.webp", href: "/welding.pdf" },
-        { title: "special tools", image: "/special-tools.webp", href: "/special-tools.pdf" },
-    ];
+    try {
+        const response = await getCatalogues()
+        if (response.success && response.data) {
+            catalogues = response.data
+        }
+    } catch (error) {
+        console.error('Failed to fetch catalogues:', error)
+    }
 
     return (
         <>
@@ -59,18 +61,22 @@ export default function ECataloguePage() {
             </div>
 
             <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-4/5 mx-auto gap-8">
-                {catalogues.map((item) => (
-                    <div
-                        key={item.title}
-                        className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-center items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300"
-                    >
-                        <Image src={item.image} alt={item.title} width={250} height={350} className="w-full h-[350px] mx-auto" />
-                        <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
-                        <Link href={item.href} rel="noopener noreferrer" target="_blank" className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
-                            <p className={`${roboto.className} font-medium uppercase text-xs`}>download {item.title} catalogue</p>
-                        </Link>
-                    </div>
-                ))}
+                {catalogues.length > 0 ? (
+                    catalogues.map((item) => (
+                        <div
+                            key={item.id}
+                            className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-center items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300"
+                        >
+                            <Image src={item.category?.image || ''} alt={item.title || 'Catalogue'} width={250} height={350} className="w-full h-[350px] mx-auto object-cover" />
+                            <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
+                            <Link href={item.file || '#'} rel="noopener noreferrer" target="_blank" className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
+                                <p className={`${roboto.className} font-medium uppercase text-xs`}>download {item.category?.name || 'catalogue'}</p>
+                            </Link>
+                        </div>
+                    ))
+                ) : (
+                    <p className="text-center text-white col-span-full">No catalogues available</p>
+                )}
             </div>
 
         </>

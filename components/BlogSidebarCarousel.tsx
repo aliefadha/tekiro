@@ -22,10 +22,12 @@ const roboto = Roboto({
 
 interface BlogPost {
     id: string;
-    imageSrc: string;
-    imageAlt: string;
+    imageSrc?: string;
+    imageAlt?: string;
     title: string;
-    date: string;
+    date?: string;
+    slug?: string;
+    primaryImage?: string;
 }
 
 interface BlogSidebarCarouselProps {
@@ -52,8 +54,8 @@ export default function BlogSidebarCarousel({ posts }: BlogSidebarCarouselProps)
                             <div className="w-full flex flex-col items-center gap-4">
                                 <div className="w-full flex flex-col items-center gap-4">
                                     <Image
-                                        src={post.imageSrc}
-                                        alt={post.imageAlt}
+                                        src={post.imageSrc || post.primaryImage || '/blog-1.webp'}
+                                        alt={post.imageAlt || post.title}
                                         width={300}
                                         height={180}
                                         className="w-full h-[180px] mx-auto object-cover"
@@ -63,7 +65,7 @@ export default function BlogSidebarCarousel({ posts }: BlogSidebarCarouselProps)
                                     </h3>
                                 </div>
                                 <Link
-                                    href={`/blog/${post.id}`}
+                                    href={`/blog/${post.slug || post.id}`}
                                     className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-2 px-3 text-[#85E408] hover:text-black text-center transition-all duration-300"
                                 >
                                     <p className={`${roboto.className} font-medium uppercase text-xs`}>Read More</p>

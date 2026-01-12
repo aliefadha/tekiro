@@ -1,17 +1,16 @@
 'use client'
 
 import { useApiGet } from '@/lib/api-hooks'
+import { fetchApi } from './server-api'
 
 async function fetchData(endpoint: string) {
-  const response = await fetch(endpoint)
-  if (!response.ok) throw new Error('Network response was not ok')
-  return response.json()
+  return fetchApi(endpoint)
 }
 
 export function useProducts() {
   return useApiGet(
     ['products'],
-    () => fetchData('/api/products'),
+    () => fetchData('/products'),
     {
       staleTime: 1000 * 60 * 5,
     }
@@ -21,9 +20,19 @@ export function useProducts() {
 export function useProductBySlug(slug: string) {
   return useApiGet(
     ['product', slug],
-    () => fetchData(`/api/products/${slug}`),
+    () => fetchData(`/products/${slug}`),
     {
       enabled: !!slug,
+    }
+  )
+}
+
+export function useCategories() {
+  return useApiGet(
+    ['categories'],
+    () => fetchData('/category'),
+    {
+      staleTime: 1000 * 60 * 5,
     }
   )
 }

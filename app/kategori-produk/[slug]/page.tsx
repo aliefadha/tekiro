@@ -2,9 +2,9 @@ import { Montserrat, Roboto } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
 import { ScrollToTop } from "./scroll-to-top";
-import { getSlugLabel } from "@/lib/slug-label";
 import CategorySidebar from "@/components/CategorySidebar";
 import ProductCard from "@/components/ProductCard";
+import { getCategories, getProductsByCategory } from "@/lib/server-api";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -22,13 +22,35 @@ export default async function KategoriProdukPage({
     params: { slug: string }
 }) {
     const { slug } = await params
+    let categories: { id: string; label: string; slug: string }[] = []
+    let products: Array<{ id: string; name: string; images: string[] }> = []
+    
+    try {
+        const categoriesResponse = await getCategories()
+        categories = categoriesResponse.data.map((item: { id: string; name: string }) => ({
+            id: item.id,
+            label: item.name,
+            slug: item.name.toLowerCase().replace(/\s+/g, '-'),
+        }))
 
-    const categories = [
-        { label: 'Wrench', slug: 'wrench' },
-        { label: 'Torque', slug: 'torque' },
-        { label: 'Socket', slug: 'socket' },
-        { label: 'Impact Socket', slug: 'impact-socket' },
-    ];
+        const currentCategory = categories.find(c => c.slug === slug)
+        if (currentCategory) {
+            const productsResponse = await getProductsByCategory(currentCategory.id)
+            if (productsResponse.success && productsResponse.data) {
+                products = productsResponse.data
+            }
+        }
+    } catch (error) {
+        console.error('Failed to fetch data:', error)
+    }
+
+    if (categories.length === 0) {
+        return (
+            <div className="min-h-[500px] flex items-center justify-center">
+                <p className="text-red-500">Failed to load categories</p>
+            </div>
+        )
+    }
 
     return (
         <>
@@ -43,18 +65,19 @@ export default async function KategoriProdukPage({
                     />
                 </div>
                 <div className="grid gap-5 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-                    <ProductCard
-                        imageSrc="/torque-1.webp"
-                        imageAlt="torque"
-                        title="Proffesional Torque Wrench"
-                        href="/product/1"
-                    />
-                    <ProductCard
-                        imageSrc="/torque-2.webp"
-                        imageAlt="torque"
-                        title="Drive Torque"
-                        href="/product/1"
-                    />
+                    {products.length > 0 ? (
+                        products.map((product) => (
+                            <ProductCard
+                                key={product.id}
+                                imageSrc={product.images[0] || '/placeholder.webp'}
+                                imageAlt={product.name}
+                                title={product.name}
+                                href={`/product/${product.id}`}
+                            />
+                        ))
+                    ) : (
+                        <p className="text-gray-500 col-span-full text-center py-10">No products found in this category</p>
+                    )}
                 </div>
             </div>
         </>

@@ -34,28 +34,35 @@ const paginationStyles = `
   }
 `;
 import Image from 'next/image';
+import Link from 'next/link';
 
-interface ProductImageCarouselProps {
+interface Product {
+    id: string;
+    name: string;
     images: string[];
 }
 
-function ImageSlide({ imageSrc }: { imageSrc: string }) {
+interface ProductImageCarouselProps {
+    products: Product[];
+}
+
+function ImageSlide({ product }: { product: Product }) {
     return (
         <div className="flex justify-center items-center p-4 bg-white">
-            <div className="relative group">
+            <Link href={`/product/${product.id}`} className="relative group">
                 <Image
-                    src={imageSrc}
+                    src={product.images[0] || '/placeholder.webp'}
                     width={300}
                     height={300}
-                    alt="Product Image"
+                    alt={product.name}
                     className="w-full h-full lg:h-64"
                 />
-            </div>
+            </Link>
         </div>
     );
 }
 
-export default function ProductImageCarousel({ images }: ProductImageCarouselProps) {
+export default function ProductImageCarousel({ products }: ProductImageCarouselProps) {
     return (
         <>
             <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
@@ -88,9 +95,9 @@ export default function ProductImageCarousel({ images }: ProductImageCarouselPro
                     }}
                     className="w-full"
                 >
-                    {images.map((image, index) => (
-                        <SwiperSlide key={index}>
-                            <ImageSlide imageSrc={image} />
+                    {products.map((product, index) => (
+                        <SwiperSlide key={product.id}>
+                            <ImageSlide product={product} />
                         </SwiperSlide>
                     ))}
                 </Swiper>
