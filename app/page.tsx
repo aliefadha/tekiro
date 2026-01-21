@@ -149,7 +149,7 @@ export default function Home() {
             ))}
           </div>
         )}
-        <Link href="/products" className={`${montserrat.className} text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] mx-auto `}>all products</Link>
+        <Link href="/product" className={`${montserrat.className} text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] mx-auto `}>all products</Link>
       </div>
 
       <div className="flex flex-col md:flex-row w-full h-auto md:h-[658px] relative">

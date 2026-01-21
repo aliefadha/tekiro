@@ -46,3 +46,72 @@ export function useLatestProducts() {
     }
   )
 }
+
+export function useProductById(id: string) {
+  return useApiGet(
+    ['product', id],
+    () => apiClient.get<{
+      id: string
+      name: string
+      description: string
+      images: string[]
+      storeUrl: string
+      categoryId: string
+      category?: { id: string; name: string }
+    }>(`/product/${id}`),
+    {
+      enabled: !!id,
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
+
+export function useRelatedProducts(categoryId: string) {
+  return useApiGet(
+    ['relatedProducts', categoryId],
+    () => apiClient.get<Array<{
+      id: string
+      name: string
+      images: string[]
+    }>>(`/product/related/${categoryId}`),
+    {
+      enabled: !!categoryId,
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
+
+export function useProductsByCategory(categoryId: string) {
+  return useApiGet(
+    ['productsByCategory', categoryId],
+    () => apiClient.get<Array<{
+      id: string
+      name: string
+      images: string[]
+    }>>(`/product/category/${categoryId}`),
+    {
+      enabled: !!categoryId,
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
+
+export function useCatalogues() {
+  return useApiGet(
+    ['catalogues'],
+    () => apiClient.get<Array<{
+      id: string
+      title: string
+      file: string
+      categoryId: string
+      category?: {
+        id: string
+        name: string
+        image: string
+      }
+    }>>('/catalogue'),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
