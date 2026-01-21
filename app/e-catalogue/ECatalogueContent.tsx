@@ -95,7 +95,7 @@ export default function ECatalogueContent() {
               >
                 <Image src={getImageUrl(item.category?.image || '') || ''} alt={item.title || 'Catalogue'} width={250} height={350} className="w-full h-[350px] mx-auto object-cover" />
                 <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
-                <Link href={item.file || '#'} rel="noopener noreferrer" target="_blank" className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
+                <Link href={getImageUrl(item.file) || '#'} rel="noopener noreferrer" target="_blank" className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
                   <p className={`${roboto.className} font-medium uppercase text-xs`}>download {item.category?.name || 'catalogue'}</p>
                 </Link>
               </div>
