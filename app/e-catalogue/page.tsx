@@ -34,9 +34,7 @@ export default async function ECataloguePage() {
 
     try {
         const response = await getCatalogues()
-        if (response.success && response.data) {
-            catalogues = response.data
-        }
+        catalogues = response.data
     } catch (error) {
         console.error('Failed to fetch catalogues:', error)
     }

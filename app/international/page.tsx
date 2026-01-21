@@ -6,6 +6,7 @@ import Link from "next/link";
 import Marquee from "@/components/Marquee";
 import { Metadata } from "next";
 import { useLatestProducts } from "@/lib/queries";
+import { getImageUrl } from "@/lib/utils";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -21,7 +22,9 @@ export default function InternationalPage() {
 
     const { data: productsResponse, isLoading } = useLatestProducts()
 
-    const products = productsResponse?.data || []
+    type Product = { id: string; name: string; images: string[] }
+    type ProductsResponse = { success: boolean; message: string; data: Product[] }
+    const products: Product[] = ((productsResponse as ProductsResponse | undefined)?.data || [])
     const heroSlides = [
         {
             id: 1,
@@ -73,7 +76,7 @@ export default function InternationalPage() {
                     <Link key={product.id} href={`/product/${product.id}`}>
                         <div>
                         <Image 
-                            src={product.images[0] || '/placeholder.webp'} 
+                            src={getImageUrl(product.images[0]) || '/placeholder.webp'} 
                             alt={product.name} 
                             width={300} 
                             height={450} 

@@ -4,6 +4,7 @@ import { Montserrat, Roboto } from "next/font/google"
 import Image from "next/image";
 import Link from "next/link";
 import { useCategories } from "@/lib/queries";
+import { getImageUrl } from "@/lib/utils";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -35,7 +36,9 @@ export default function AllProductPage() {
     );
   }
 
-  const catalogues = data.data.map((item: { id: string; name: string; image: string }) => ({
+  type Category = { id: string; name: string; image: string }
+  type CategoriesResponse = { data: Category[] }
+  const catalogues = (data as CategoriesResponse).data.map((item: Category) => ({
     title: item.name,
     image: item.image,
     href: `/kategori-produk/${item.name.toLowerCase().replace(/\s+/g, '-')}`,
@@ -61,7 +64,7 @@ export default function AllProductPage() {
               key={item.title}
               className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-center items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"
             >
-              <Image src={item.image} alt={item.title} width={250} height={350} className="w-full h-[350px] object-cover mx-auto" />
+              <Image src={getImageUrl(item.image)} alt={item.title} width={250} height={350} className="w-full h-[350px] object-cover mx-auto" />
               <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
               <Link href={item.href} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
                 <p className={`${roboto.className} font-medium uppercase text-sm`}>explore now</p>

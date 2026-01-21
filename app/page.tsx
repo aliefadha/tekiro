@@ -15,6 +15,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import { useLatestProducts } from '@/lib/queries';
+import { getImageUrl } from "@/lib/utils";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -31,7 +32,9 @@ export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(true)
   const { data: productsResponse, isLoading } = useLatestProducts()
 
-  const products = productsResponse?.data || []
+  type Product = { id: string; name: string; images: string[] }
+  type ProductsResponse = { success: boolean; message: string; data: Product[] }
+  const products: Product[] = ((productsResponse as ProductsResponse | undefined)?.data || [])
 
   return (
     <>
@@ -132,12 +135,12 @@ export default function Home() {
             {products.map((product: { id: string; name: string; images: string[] }) => (
               <Link key={product.id} href={`/product/${product.id}`}>
                 <div>
-                  <Image 
-                    src={product.images[0] || '/placeholder.webp'} 
-                    alt={product.name} 
-                    width={300} 
-                    height={450} 
-                    className="border border-black" 
+                  <Image
+                    src={getImageUrl(product.images[0]) || '/placeholder.webp'}
+                    alt={product.name}
+                    width={300}
+                    height={450}
+                    className="border border-black"
                   />
                   <h2 className={`${montserrat.className} my-2.5 uppercase text-[#6EC1E4]`}>{product.name}</h2>
                   <p className={`${roboto.className} text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium`}>Read more</p>

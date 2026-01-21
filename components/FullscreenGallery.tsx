@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
+import { getImageUrl } from '@/lib/utils'
 
 interface FullscreenGalleryProps {
     images: string[]
@@ -118,7 +119,7 @@ export default function FullscreenGallery({
                     >
                         {currentImage && !imageError ? (
                             <Image
-                                src={currentImage}
+                                src={getImageUrl(currentImage)}
                                 alt={`${productName} - Image ${currentImageIndex + 1}`}
                                 className="object-contain transition-transform duration-200"
                                 fill

@@ -39,14 +39,10 @@ const cordlessProducts: CordlessProduct[] = [
 
 export default async function CordlessPage() {
     const latestProductsResponse = await getLatestProducts()
-    const latestProducts = latestProductsResponse.success && latestProductsResponse.data 
-        ? latestProductsResponse.data 
-        : []
+    const latestProducts = latestProductsResponse.data
 
     const cordlessProductsResponse = await getCordlessProducts()
-    const cordlessProductCards = cordlessProductsResponse.success && cordlessProductsResponse.data
-        ? cordlessProductsResponse.data
-        : []
+    const cordlessProductCards = cordlessProductsResponse.data
 
     return (
         <>

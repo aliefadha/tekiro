@@ -1,8 +1,9 @@
 import type { NextConfig } from "next";
 import path from "path";
 
+const apiUrl = process.env.NEXT_PUBLIC_API_URL ? new URL(process.env.NEXT_PUBLIC_API_URL) : null;
+
 const nextConfig: NextConfig = {
-  /* config options here */
   images: {
     remotePatterns: [
       {
@@ -19,16 +20,16 @@ const nextConfig: NextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'cdn.shopify.com',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
         hostname: 'via.placeholder.com',
         port: '',
         pathname: '/**',
-      }
+      },
+      ...(apiUrl ? [{
+        protocol: apiUrl.protocol.replace(':', '') as 'http' | 'https',
+        hostname: apiUrl.hostname,
+        port: apiUrl.port || undefined,
+        pathname: "/uploads/**",
+      }] : []),
     ]
   },
   turbopack: {

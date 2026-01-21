@@ -35,6 +35,7 @@ const paginationStyles = `
 `;
 import Image from 'next/image';
 import Link from 'next/link';
+import { getImageUrl } from '@/lib/utils';
 
 interface Product {
     id: string;
@@ -51,7 +52,7 @@ function ImageSlide({ product }: { product: Product }) {
         <div className="flex justify-center items-center p-4 bg-white">
             <Link href={`/product/${product.id}`} className="relative group">
                 <Image
-                    src={product.images[0] || '/placeholder.webp'}
+                    src={getImageUrl(product.images[0]) || '/placeholder.webp'}
                     width={300}
                     height={300}
                     alt={product.name}

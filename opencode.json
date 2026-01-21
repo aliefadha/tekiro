@@ -1,0 +1,27 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "shadcn": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "npx",  
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "MiniMax": {
+      "type": "local",
+      "enabled": true,
+      "command": [
+        "uvx",
+        "minimax-coding-plan-mcp",
+        "-y"
+      ],
+      "environment": {
+        "MINIMAX_API_KEY": "sk-cp-JHxYRo_oF7JRxxkJXaIX8kVS8k3xi1Wm5lEqB5K66HuBiRHrmFm03OWmAufhKQTF9ARvjBt20ELb-CBXrOByAABLD_MW7duoQ5SDXzynOKRJLjjA9Jh5u6U",
+        "MINIMAX_API_HOST": "https://api.minimax.io",
+      }
+    }
+  }
+}

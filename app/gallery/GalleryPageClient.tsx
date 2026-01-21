@@ -27,7 +27,7 @@ export default function GalleryPageClient({
 }) {
     const [activeView, setActiveView] = useState<'gallery' | 'instagram'>('gallery')
 
-    const galleryImages = galleryData.map((item) => item.image)
+    const galleryImages = galleryData?.map((item) => item.image) || []
 
     const handleViewChange = (view: 'gallery' | 'instagram') => {
         setActiveView(view)
@@ -73,7 +73,7 @@ export default function GalleryPageClient({
                     {activeView === 'instagram' && (
                         <div className="fade-in">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                                {instagramData.map((item) => (
+                                {instagramData?.map((item) => (
                                     <a
                                         key={item.id}
                                         href={item.link}

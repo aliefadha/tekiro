@@ -1,4 +1,7 @@
 'use client'
+
+import { getImageUrl } from '@/lib/utils'
+
 interface ThumbnailSelectorProps {
     images: string[]
     alt: string
@@ -33,7 +36,7 @@ export default function ThumbnailSelector({
                     onClick={() => onThumbnailClick(index)}
                 >
                     <img
-                        src={imageSrc}
+                        src={getImageUrl(imageSrc)}
                         alt={`${alt} - Image ${index + 1}`}
                         width={thumbnailSize}
                         height={thumbnailSize}

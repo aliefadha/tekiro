@@ -1,10 +1,10 @@
 'use client'
 
 import { useApiGet } from '@/lib/api-hooks'
-import { fetchApi } from './server-api'
+import { apiClient } from './api-client'
 
 async function fetchData(endpoint: string) {
-  return fetchApi(endpoint)
+  return apiClient.get(endpoint)
 }
 
 export function useProducts() {
@@ -40,7 +40,7 @@ export function useCategories() {
 export function useLatestProducts() {
   return useApiGet(
     ['latestProducts'],
-    () => fetchApi<{ success: boolean; message: string; data: Array<{ id: string; name: string; images: string[] }> }>('/product/latest'),
+    () => apiClient.get<{ success: boolean; message: string; data: Array<{ id: string; name: string; images: string[] }> }>('/product/latest'),
     {
       staleTime: 1000 * 60 * 5,
     }
