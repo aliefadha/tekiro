@@ -39,17 +39,45 @@ export async function generateMetadata({
     };
 }
 
+interface Article {
+    id: string
+    title: string
+    slug: string
+    excerpt: string
+    contentHtml: string
+    primaryImage: string
+    seoTitle: string
+    seoDescription: string
+    seoKeywords: string
+    metaTags: {
+        title: string
+        keywords: string
+        description: string
+    }
+    publishedAt: string
+}
+
 export default async function BlogDetailPage({
     params,
 }: {
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const response = await getArticleBySlug(slug);
-    const post = response.data;
+    let post: Article | null = null
+    try {
+        const response = await getArticleBySlug(slug);
+        post = response.data;
+    } catch (error) {
+        console.warn(`Failed to fetch article ${slug} during build:`, error);
+    }
 
-    const articlesResponse = await getArticles(6, 1);
-    const allArticles = articlesResponse.data;
+    let allArticles: Article[] = []
+    try {
+        const articlesResponse = await getArticles(6, 1);
+        allArticles = articlesResponse.data;
+    } catch (error) {
+        console.warn('Failed to fetch articles list during build:', error);
+    }
     const currentIndex = allArticles.findIndex((p) => p.slug === slug);
     const prevPost = currentIndex > 0 ? allArticles[currentIndex - 1] : null;
     const nextPost = currentIndex < allArticles.length - 1 ? allArticles[currentIndex + 1] : null;

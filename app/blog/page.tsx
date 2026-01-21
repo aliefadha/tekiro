@@ -15,8 +15,29 @@ export const metadata: Metadata = {
 };
 
 export default async function BlogPage() {
-    const response = await getArticles(6, 1)
-    const articles = response.data
+    let articles: Array<{
+        id: string
+        title: string
+        slug: string
+        excerpt: string
+        contentHtml: string
+        primaryImage: string
+        seoTitle: string
+        seoDescription: string
+        seoKeywords: string
+        metaTags: {
+            title: string
+            keywords: string
+            description: string
+        }
+        publishedAt: string
+    }> = []
+    try {
+        const response = await getArticles(6, 1)
+        articles = response.data
+    } catch (error) {
+        console.warn('Failed to fetch articles during build:', error)
+    }
 
     return (
         <>
