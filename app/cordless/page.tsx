@@ -38,11 +38,26 @@ const cordlessProducts: CordlessProduct[] = [
 ];
 
 export default async function CordlessPage() {
-    const latestProductsResponse = await getLatestProducts()
-    const latestProducts = latestProductsResponse.data
+    let latestProducts: Array<{ id: string; name: string; images: string[] }> = []
+    try {
+        const latestProductsResponse = await getLatestProducts()
+        latestProducts = latestProductsResponse.data
+    } catch (error) {
+        console.warn('Failed to fetch latest products during build:', error)
+    }
 
-    const cordlessProductsResponse = await getCordlessProducts()
-    const cordlessProductCards = cordlessProductsResponse.data
+    let cordlessProductCards: Array<{
+        id: string
+        title: string
+        description: string
+        link: string
+    }> = []
+    try {
+        const cordlessProductsResponse = await getCordlessProducts()
+        cordlessProductCards = cordlessProductsResponse.data
+    } catch (error) {
+        console.warn('Failed to fetch cordless products during build:', error)
+    }
 
     return (
         <>

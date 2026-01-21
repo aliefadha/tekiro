@@ -23,11 +23,30 @@ export default async function ProductPage({
 
   const { slug } = await params
   const productId = slug
-  const productResponse = await getProductById(productId)
-  const product = productResponse.data
 
-  const relatedResponse = await getRelatedProducts(product?.categoryId || "")
-  const relatedProducts = (relatedResponse.data || []) as Array<{ id: string; name: string; images: string[] }>
+  let product: {
+    id: string
+    name: string
+    description: string
+    images: string[]
+    storeUrl: string
+    categoryId: string
+    category?: { id: string; name: string }
+  } | null = null
+  try {
+    const productResponse = await getProductById(productId)
+    product = productResponse.data
+  } catch (error) {
+    console.warn('Failed to fetch product during build:', error)
+  }
+
+  let relatedProducts: Array<{ id: string; name: string; images: string[] }> = []
+  try {
+    const relatedResponse = await getRelatedProducts(product?.categoryId || "")
+    relatedProducts = (relatedResponse.data || []) as typeof relatedProducts
+  } catch (error) {
+    console.warn('Failed to fetch related products during build:', error)
+  }
 
   if (!product) {
     return (
