@@ -34,8 +34,8 @@ export default function ProductCard({
           className="object-cover"
         />
       </div>
-      <h1 className={`font-montserrat font-bold uppercase text-2xl text-[#85E408]`}>{title}</h1>
-      <h1 className={`font-montserrat font-medium capitalize text-xl text-[#427402]`}>{category}</h1>
+      <h2 className={`font-montserrat font-bold uppercase text-2xl text-[#85E408]`}>{title}</h2>
+      <h3 className={`font-montserrat font-medium capitalize text-xl text-[#427402]`}>{category}</h3>
       <Link href={href} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black">
         <p className={`font-roboto font-medium uppercase text-sm`}>read more</p>
       </Link>

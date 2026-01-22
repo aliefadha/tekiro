@@ -27,9 +27,9 @@ export default function CategorySidebar({
     return (
         <div className="py-8 px-5 bg-black rounded-md flex flex-col gap-5 h-fit md:h-full transition-all duration-300">
             <div className="flex items-center justify-between">
-                <h1 className={`${montserratClassName} text-[#85E408] text-2xl uppercase font-bold`}>
+                <h2 className={`${montserratClassName} text-[#85E408] text-2xl uppercase font-bold`}>
                     categories
-                </h1>
+                </h2>
 
             </div>
 
@@ -55,6 +55,7 @@ export default function CategorySidebar({
             </div>
             <button
                 onClick={() => setIsOpen(!isOpen)}
+                aria-label={isOpen ? "Close categories" : "Open categories"}
                 className="md:hidden text-[#85E408] self-center"
             >
                 {isOpen ? <X size={28} /> : <Menu size={28} />}

@@ -114,7 +114,13 @@ export default function SearchPage() {
   return (
     <Suspense fallback={
       <div className="min-h-[500px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#85E408] py-10"></div>
+        <div
+          className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#85E408] py-10"
+          role="status"
+          aria-label="Loading search results"
+        >
+          <span className="sr-only">Loading...</span>
+        </div>
       </div>
     }>
       <SearchContent />

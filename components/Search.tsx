@@ -16,16 +16,18 @@ export default function Search() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="flex gap-2 h-10">
+    <form onSubmit={handleSubmit} className="flex gap-2 h-10" role="search" aria-label="Site search">
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search products"
+        aria-label="Search products"
         className="bg-white h-full px-4 w-32 text-gray-700 outline-none placeholder-gray-400 text-xs"
       />
       <button
         type="submit"
+        aria-label="Submit search"
         className="h-full bg-[#333333] px-2.5 flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm"
       >
         <SearchIcon />

@@ -120,10 +120,16 @@ export default function ProductImageCarousel({ products, isLoading = false }: Pr
                 </Swiper>
 
                 {/* Custom Navigation Buttons */}
-                <button className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-2 text-gray-800 p-3 rounded-full transition-colors duration-200">
+                <button
+                    className="swiper-button-prev-custom absolute left-0 top-1/2 -translate-y-1/2 z-2 text-gray-800 p-3 rounded-full transition-colors duration-200"
+                    aria-label="Previous slide"
+                >
                     <ChevronLeft size={24} />
                 </button>
-                <button className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-2 text-gray-800 p-3 rounded-full transition-colors duration-200">
+                <button
+                    className="swiper-button-next-custom absolute right-0 top-1/2 -translate-y-1/2 z-2 text-gray-800 p-3 rounded-full transition-colors duration-200"
+                    aria-label="Next slide"
+                >
                     <ChevronRight size={24} />
                 </button>
 

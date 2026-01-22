@@ -36,7 +36,7 @@ export default function Navbar() {
     return (
         <header className="w-full sticky top-0 z-50">
             <div className="font-montserrat font-medium w-full bg-[#85E408] text-center text-black p-1 md:p-2.5">
-                <h1>OFFICIAL TEKIRO WEBSITE</h1>
+                <span className="text-sm md:text-base font-bold uppercase">OFFICIAL TEKIRO WEBSITE</span>
             </div>
             <nav className="font-roboto z-20 relative w-full bg-black text-white">
                 <div className="mx-auto px-6 lg:px-4 xl:px-10 h-20 lg:h-28 flex items-center justify-between gap-4 lg:gap-4 xl:gap-12">
@@ -73,6 +73,8 @@ export default function Navbar() {
                                 <Link
                                     href="/contact"
                                     aria-current={isContactActive ? "page" : undefined}
+                                    aria-expanded={isContactOpen}
+                                    aria-haspopup="true"
                                     className={`relative inline-flex items-center gap-1 pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${isContactActive
                                         ? "after:bg-white after:scale-x-100 after:origin-center"
                                         : "after:bg-white after:scale-x-0 after:origin-right group-hover:after:scale-x-100 group-hover:after:origin-right"
@@ -81,12 +83,17 @@ export default function Navbar() {
                                     Contact
                                     <ChevronDown size={18} />
                                 </Link>
-                                <div className="absolute left-0 top-full w-56 bg-white border border-[#1f1f1f] z-10 shadow-xl opacity-0 pointer-events-none transition-all duration-200 ease-out translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0">
+                                <div
+                                    role="menu"
+                                    aria-label="Contact options"
+                                    className="absolute left-0 top-full w-56 bg-white border border-[#1f1f1f] z-10 shadow-xl opacity-0 pointer-events-none transition-all duration-200 ease-out translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0"
+                                >
                                     <ul className="flex flex-col gap-2 text-sm font-medium">
                                         {contactChildren.map((child) => (
                                             <li key={child.label} className=" py-3 px-4 text-[#427402] hover:bg-[#33373d] hover:text-white transition-colors duration-150">
                                                 <Link
                                                     href={child.href}
+                                                    role="menuitem"
                                                     className="font-roboto">
                                                     {child.label}
                                                 </Link>
@@ -123,7 +130,13 @@ export default function Navbar() {
                             <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"></path></svg>
                         </Link>
 
-                        <button onClick={() => setIsMenuOpen(!isMenuOpen)} className="text-white focus:outline-none">
+                        <button
+                            onClick={() => setIsMenuOpen(!isMenuOpen)}
+                            aria-expanded={isMenuOpen}
+                            aria-controls="mobile-menu"
+                            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+                            className="text-white focus:outline-none"
+                        >
                             {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
                         </button>
                     </div>
@@ -131,7 +144,7 @@ export default function Navbar() {
 
                 {/* Mobile Menu Dropdown */}
                 {isMenuOpen && (
-                    <div className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-gray-800 text-white z-40 pb-6">
+                    <div id="mobile-menu" role="navigation" aria-label="Mobile menu" className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-gray-800 text-white z-40 pb-6">
                         <div className="px-6 py-4 border-b border-gray-800">
                             <div className="flex gap-2 h-10 w-full">
                                 <Search />
@@ -158,6 +171,8 @@ export default function Navbar() {
                             <li className="border-b border-gray-800">
                                 <button
                                     onClick={() => setIsContactOpen(!isContactOpen)}
+                                    aria-expanded={isContactOpen}
+                                    aria-controls="mobile-contact-menu"
                                     className="w-full flex items-center justify-between py-3 px-6 text-sm font-bold uppercase text-white hover:bg-gray-900 transition-colors"
                                 >
                                     Contact
@@ -167,6 +182,9 @@ export default function Navbar() {
                                     />
                                 </button>
                                 <div
+                                    id="mobile-contact-menu"
+                                    role="menu"
+                                    aria-label="Contact options"
                                     className={`overflow-hidden transition-all duration-300 ease-in-out ${isContactOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
                                 >
                                     <ul className="bg-gray-900">
@@ -175,6 +193,7 @@ export default function Navbar() {
                                                 <Link
                                                     href={child.href}
                                                     onClick={() => setIsMenuOpen(false)}
+                                                    role="menuitem"
                                                     className="block py-3 px-10 text-sm text-gray-300 hover:text-white"
                                                 >
                                                     {child.label}

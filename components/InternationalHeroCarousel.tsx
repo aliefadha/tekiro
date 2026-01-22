@@ -71,10 +71,10 @@ export default function InternationalHeroCarousel({ slides }: InternationalHeroC
                 ))}
             </Swiper>
 
-            <button className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-20 text-black p-3 rounded-full transition-colors duration-200 hover:bg-black/10">
+            <button className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-20 text-black p-3 rounded-full transition-colors duration-200 hover:bg-black/10" aria-label="Previous slide">
                 <ChevronLeft size={24} />
             </button>
-            <button className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-20 text-black p-3 rounded-full transition-colors duration-200 hover:bg-black/10">
+            <button className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-20 text-black p-3 rounded-full transition-colors duration-200 hover:bg-black/10" aria-label="Next slide">
                 <ChevronRight size={24} />
             </button>
         </div>

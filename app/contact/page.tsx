@@ -16,7 +16,7 @@ export default function ContactPage() {
                 {/* Overlapping Form Container */}
                 <div className="absolute left-1/2 -translate-x-1/2 top-[15vh] w-full max-w-4xl px-4 z-10">
                     <div className="bg-black shadow-2xl p-8 border-4 border-[#85E408] rounded-none">
-                        <h2 className={`${montserrat.className} text-4xl font-medium text-center mb-4 text-white uppercase`}>Contact</h2>
+                        <h1 className={`${montserrat.className} text-4xl font-medium text-center mb-4 text-white uppercase`}>Contact</h1>
                         <form className="space-y-2">
                             {/* Name */}
                             <div>

@@ -21,9 +21,9 @@ export default function AboutUsCarousel() {
         <div className="flex flex-col lg:flex-row w-full min-h-[640px] relative">
             <div className="w-full lg:w-2/5 bg-black z-10">
                 <div className={`${montserrat.className} bg-[#85E408] w-full max-w-none px-12 py-24 flex flex-col gap-5 ml-0 lg:ml-24 lg:my-24 `}>
-                    <h1 className="font-bold uppercase text-3xl">
+                    <h2 className="font-bold uppercase text-3xl">
                         PODCAST TEKIRO TALK
-                    </h1>
+                    </h2>
                     <p className="text-sm font-medium">
                         Through our <strong>Tekiro Talk podcast</strong> , we bring you valuable insights, inspiration,
                         and tips about tools and everyday life. As part of Tekiro Tools’ commitment to delivering high-quality solutions,
@@ -87,10 +87,10 @@ export default function AboutUsCarousel() {
                 </Swiper>
 
                 {/* Custom Navigation Buttons */}
-                <button className="swiper-button-prev-custom absolute left-4 lg:left-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200">
+                <button className="swiper-button-prev-custom absolute left-4 lg:left-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200" aria-label="Previous slide">
                     <ChevronLeft size={24} />
                 </button>
-                <button className="swiper-button-next-custom absolute right-4 lg:right-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200">
+                <button className="swiper-button-next-custom absolute right-4 lg:right-20 top-1/2 -translate-y-1/2 z-20 p-3 rounded-full transition-colors duration-200" aria-label="Next slide">
                     <ChevronRight size={24} />
                 </button>
             </div>

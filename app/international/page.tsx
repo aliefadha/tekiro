@@ -106,9 +106,9 @@ export default function InternationalPage() {
                     </div>
                     <div className="w-full md:w-5/12 bg-black z-10 h-auto flex flex-col justify-center p-4 lg:p-0">
                         <div className="bg-[#85E408] w-full p-8 lg:p-12 flex flex-col gap-5 ms-0 md:-ms-48 lg:-ms-96 max-w-3xl">
-                            <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
+                            <h2 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                                 malaysia
-                            </h1>
+                            </h2>
                             <p className={`${montserrat.className} text-sm font-medium`}>
                                 Explore the complete range of Tekiro® tools, from hand tools to power equipment,
                                 designed to meet the needs of every project. Our catalog offers everything from
@@ -117,7 +117,7 @@ export default function InternationalPage() {
                             </p>
                             <div className="flex flex-col lg:flex-row justify-between bg-black rounded-md lg:rounded-xl p-4 lg:p-8 text-white">
                                 <div className="space-y-2">
-                                    <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h1>
+                                    <h3 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h3>
                                     <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -129,7 +129,7 @@ export default function InternationalPage() {
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h1>
+                                    <h3 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h3>
                                     <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -158,9 +158,9 @@ export default function InternationalPage() {
                     </div>
                     <div className="w-full md:w-5/12 bg-black z-10 h-auto flex flex-col justify-center p-4 lg:p-0">
                         <div className="bg-[#85E408] w-full p-8 lg:p-12 flex flex-col gap-5 ms-0 md:ms-48 lg:ms-96 max-w-3xl">
-                            <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
+                            <h2 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                                 thailand
-                            </h1>
+                            </h2>
                             <p className={`${montserrat.className} text-sm font-medium`}>
                                 Explore the complete range of Tekiro® tools, from hand tools to power equipment,
                                 designed to meet the needs of every project. Our catalog offers everything from
@@ -169,7 +169,7 @@ export default function InternationalPage() {
                             </p>
                             <div className="flex flex-col lg:flex-row justify-between bg-black rounded-md lg:rounded-xl p-4 lg:p-8 text-white">
                                 <div className="space-y-2">
-                                    <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h1>
+                                    <h3 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h3>
                                     <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -181,7 +181,7 @@ export default function InternationalPage() {
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h1>
+                                    <h3 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h3>
                                     <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -210,9 +210,9 @@ export default function InternationalPage() {
                     </div>
                     <div className="w-full md:w-5/12 bg-black z-10 h-auto flex flex-col justify-center p-4 lg:p-0">
                         <div className="bg-[#85E408] w-full p-8 lg:p-12 flex flex-col gap-5 ms-0 md:-ms-48 lg:-ms-96 max-w-3xl">
-                            <h1 className={`${montserrat.className} font-bold uppercase text-3xl`}>
+                            <h2 className={`${montserrat.className} font-bold uppercase text-3xl`}>
                                 sri lanka
-                            </h1>
+                            </h2>
                             <p className={`${montserrat.className} text-sm font-medium`}>
                                 Explore the complete range of Tekiro® tools, from hand tools to power equipment,
                                 designed to meet the needs of every project. Our catalog offers everything from
@@ -221,7 +221,7 @@ export default function InternationalPage() {
                             </p>
                             <div className="flex flex-col lg:flex-row justify-between bg-black rounded-md lg:rounded-xl p-4 lg:p-8 text-white">
                                 <div className="space-y-2">
-                                    <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h1>
+                                    <h3 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>tekiro</h3>
                                     <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
@@ -233,7 +233,7 @@ export default function InternationalPage() {
                                     </div>
                                 </div>
                                 <div className="space-y-2">
-                                    <h1 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h1>
+                                    <h3 className={`${roboto.className} font-semibold capitalize text-2xl text-center`}>rexco</h3>
                                     <div className="lg:flex gap-4 hidden">
                                         <div className="p-2 border border-white rounded-md">
                                             <svg aria-hidden="true" fill="white" className="w-5 h-5" viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">

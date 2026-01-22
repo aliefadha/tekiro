@@ -100,9 +100,9 @@ export default function Home() {
 
         <div className="w-full md:w-2/5 bg-black z-10 p-4 md:p-0">
           <div className="bg-[#85E408] w-full max-w-none p-6 md:px-12 md:py-24 flex flex-col gap-5 md:-ms-24 my-0 md:my-24 ">
-            <h1 className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}>Tekiro®<br />
+            <h2 className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}>Tekiro®<br />
               FOR EVERYTHING & EVERYONE.
-            </h1>
+            </h2>
             <p className={`font-montserrat text-sm w-3/4 font-medium`} >Whether you’re a professional, hobbyist, or DIY enthusiast, Tekiro provides the tools you can trust for all kinds of projects. From simple repairs to complex tasks, we equip you with the reliability, precision, and performance needed to get the job done—no matter the scale. Tekiro® is built for all, designed for everything.</p>
             <h2 className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] `}>find yours</h2>
           </div>
@@ -143,9 +143,9 @@ export default function Home() {
       <div className="flex flex-col md:flex-row w-full h-auto md:h-[658px] relative">
         <div className="w-full md:w-2/5 bg-black z-10 p-4 md:p-0">
           <div className="bg-[#85E408] w-full max-w-none p-6 md:px-12 md:py-24 flex flex-col gap-5 md:ml-24 my-0 md:my-24 ">
-            <h1 className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}>Tekiro®<br />
+            <h2 className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}>Tekiro®<br />
               CATALOGUE &<br /> COLLECTIONS
-            </h1>
+            </h2>
             <p className={`font-montserrat text-sm w-3/4 font-medium`} >Explore the complete range of Tekiro® tools, from hand tools to power equipment, designed to meet the needs of every project. Our catalog offers everything from everyday essentials to specialized solutions, ensuring you have access to the best quality tools for all your tasks.</p>
             <Link href="/e-catalogue" className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] `}>show more</Link>
           </div>

@@ -58,9 +58,9 @@ function ProductSlide({ product, isActive, onAnimationEnd }: { product: Cordless
 
             <div className="w-full md:w-2/5 bg-black z-10 md:h-full flex flex-col justify-center p-4 md:p-0">
                 <div ref={greenBgRef} className="bg-[#85E408] text-center w-full max-w-none p-6 md:px-12 md:py-24 flex flex-col gap-5 md:-ms-60">
-                    <h1 className={`${montserrat.className} font-bold uppercase text-2xl md:text-3xl`}>
+                    <h2 className={`${montserrat.className} font-bold uppercase text-2xl md:text-3xl`}>
                         {product.title}
-                    </h1>
+                    </h2>
                     <p className={`${montserrat.className} text-sm w-3/4 mx-auto font-medium`}>
                         {product.description}
                     </p>
@@ -104,10 +104,10 @@ export default function CordlessCarousel({ products }: CordlessCarouselProps) {
             </Swiper>
 
             {/* Custom Navigation Buttons */}
-            <button className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-20  text-white p-3 rounded-full transition-colors duration-200">
+            <button className="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 z-20  text-white p-3 rounded-full transition-colors duration-200" aria-label="Previous slide">
                 <ChevronLeft size={24} />
             </button>
-            <button className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white p-3 rounded-full transition-colors duration-200">
+            <button className="swiper-button-next-custom absolute right-4 top-1/2 -translate-y-1/2 z-20 text-white p-3 rounded-full transition-colors duration-200" aria-label="Next slide">
                 <ChevronRight size={24} />
             </button>
         </div>

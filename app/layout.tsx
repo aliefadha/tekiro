@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import AOSInit from "@/components/AOSInit";
 import { Providers } from "@/lib/providers";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
+import SkipLink from "@/components/SkipLink";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,9 +59,12 @@ export default function RootLayout({
       >
         <Providers>
           <AOSInit />
+          <SkipLink />
           <Navbar />
           <ErrorBoundary>
-            {children}
+            <main id="main-content">
+              {children}
+            </main>
           </ErrorBoundary>
           <Footer />
         </Providers>
