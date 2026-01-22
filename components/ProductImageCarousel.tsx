@@ -45,6 +45,7 @@ interface Product {
 
 interface ProductImageCarouselProps {
     products: Product[];
+    isLoading?: boolean;
 }
 
 function ImageSlide({ product }: { product: Product }) {
@@ -63,7 +64,15 @@ function ImageSlide({ product }: { product: Product }) {
     );
 }
 
-export default function ProductImageCarousel({ products }: ProductImageCarouselProps) {
+function LoadingSlide() {
+    return (
+        <div className="flex justify-center items-center p-4 bg-white">
+            <div className="w-[300px] h-[300px] animate-pulse bg-gray-200" />
+        </div>
+    );
+}
+
+export default function ProductImageCarousel({ products, isLoading = false }: ProductImageCarouselProps) {
     return (
         <>
             <style dangerouslySetInnerHTML={{ __html: paginationStyles }} />
@@ -78,7 +87,7 @@ export default function ProductImageCarousel({ products }: ProductImageCarouselP
                         clickable: true,
                         el: '.swiper-pagination-custom',
                     }}
-                    loop={true}
+                    loop={products.length > 1}
                     slidesPerView={1}
                     slidesPerGroup={1}
                     spaceBetween={10}
@@ -96,11 +105,18 @@ export default function ProductImageCarousel({ products }: ProductImageCarouselP
                     }}
                     className="w-full"
                 >
-                    {products.map((product, index) => (
-                        <SwiperSlide key={product.id}>
-                            <ImageSlide product={product} />
-                        </SwiperSlide>
-                    ))}
+                    {isLoading
+                        ? Array.from({ length: 6 }).map((_, i) => (
+                            <SwiperSlide key={i}>
+                                <LoadingSlide />
+                            </SwiperSlide>
+                        ))
+                        : products.map((product) => (
+                            <SwiperSlide key={product.id}>
+                                <ImageSlide product={product} />
+                            </SwiperSlide>
+                        ))
+                    }
                 </Swiper>
 
                 {/* Custom Navigation Buttons */}

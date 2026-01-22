@@ -1,5 +1,6 @@
 import type { NextConfig } from "next";
 import path from "path";
+import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const apiUrl = process.env.NEXT_PUBLIC_API_URL ? new URL(process.env.NEXT_PUBLIC_API_URL) : null;
 
@@ -37,4 +38,8 @@ const nextConfig: NextConfig = {
   }
 };
 
-export default nextConfig;
+const configWithAnalyzer = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === 'true',
+})(nextConfig);
+
+export default configWithAnalyzer;

@@ -6,6 +6,8 @@ import ProductGallery from "@/components/ProductGallery"
 import Link from "next/link"
 import { useProductById, useRelatedProducts } from "@/lib/queries"
 import { getImageUrl } from "@/lib/utils"
+import Script from "next/script"
+import { generateProductSchema } from "@/lib/schema"
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -42,8 +44,20 @@ export default function ProductContent({ slug }: { slug: string }) {
 
   return (
     <>
-      <div className="h-[200px] object-contain bg-[url(/torque-2.webp)] bg-center bg-cover relative">
-        <div className={`${montserrat.className} bg-black/80 h-[200px] flex flex-col items-center justify-center text-center`}>
+      <Script
+        id="product-schema"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: generateProductSchema(product) }}
+      />
+      <div className="h-[200px] relative">
+        <Image
+          src={getImageUrl(product.images?.[0]) || '/placeholder.webp'}
+          alt={product.name || 'Product'}
+          fill
+          className="object-cover"
+          priority
+        />
+        <div className={`${montserrat.className} bg-black/80 absolute inset-0 flex flex-col items-center justify-center text-center`}>
           <div className="flex flex-col justify-center text-center gap-10">
             <h1 className="text-white font-semibold text-4xl uppercase">{product.name || 'Product'}</h1>
           </div>
@@ -62,7 +76,11 @@ export default function ProductContent({ slug }: { slug: string }) {
             </div>
             <div className="flex flex-col gap-5">
               <div className="prose prose-lg text-gray-700">
-                <p>{product.description || ''}</p>
+                <ul className="list-disc list-inside space-y-1">
+                  {(product.description || '').split(/\r?\n/).filter(Boolean).map((line, index) => (
+                    <li key={index}>{line}</li>
+                  ))}
+                </ul>
               </div>
               <div>
                 <p className="font-bold">Category <Link href="/" className="text-[#427402] font-normal">{product.category?.name || 'Uncategorized'}</Link></p>
@@ -119,7 +137,7 @@ export default function ProductContent({ slug }: { slug: string }) {
                       key={relatedProduct.id}
                       className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-start items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"
                     >
-                      <Image src={getImageUrl(relatedProduct.images?.[0]) || '/placeholder.webp'} alt={relatedProduct.name} width={300} height={300} className="w-full h-[300px] mx-auto object-cover" />
+                      <Image src={getImageUrl(relatedProduct.images?.[0]) || '/placeholder.webp'} alt={relatedProduct.name} width={300} height={300} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" className="w-full h-[300px] mx-auto object-cover" />
                       <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{relatedProduct.name}</h1>
                       <Link href={`/product/${relatedProduct.id}`} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
                         <p className={`${roboto.className} font-medium uppercase text-sm`}>read more</p>

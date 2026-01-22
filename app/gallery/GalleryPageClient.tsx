@@ -3,35 +3,27 @@
 import { useState } from 'react'
 import { Montserrat } from "next/font/google"
 import MasonryGallery from '@/components/MasonryGallery'
+import { useGallery, useInstagram } from '@/lib/queries'
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
     subsets: ["latin"]
 })
 
-export default function GalleryPageClient({
-    galleryData,
-    instagramData,
-}: {
-    galleryData: Array<{
-        id: string
-        title: string
-        image: string
-    }>
-    instagramData: Array<{
-        id: string
-        title: string
-        link: string
-        image: string
-    }>
-}) {
+export default function GalleryPageClient() {
     const [activeView, setActiveView] = useState<'gallery' | 'instagram'>('gallery')
+    const { data: galleryResponse, isLoading: isGalleryLoading } = useGallery()
+    const { data: instagramResponse, isLoading: isInstagramLoading } = useInstagram()
 
-    const galleryImages = galleryData?.map((item) => item.image) || []
+    const galleryData = galleryResponse?.data || []
+    const instagramData = instagramResponse?.data || []
+    const galleryImages = galleryData.map((item) => item.image)
 
     const handleViewChange = (view: 'gallery' | 'instagram') => {
         setActiveView(view)
     }
+
+    const isLoading = activeView === 'gallery' ? isGalleryLoading : isInstagramLoading
 
     return (
         <>
@@ -61,7 +53,13 @@ export default function GalleryPageClient({
                 </div>
 
                 <div className="mt-8 min-h-[500px]">
-                    {activeView === 'gallery' && (
+                    {isLoading ? (
+                        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                            {Array.from({ length: 8 }).map((_, i) => (
+                                <div key={i} className="animate-pulse aspect-square bg-gray-200 rounded-lg" />
+                            ))}
+                        </div>
+                    ) : activeView === 'gallery' && (
                         <div className="fade-in">
                             <MasonryGallery
                                 images={galleryImages}
@@ -70,7 +68,7 @@ export default function GalleryPageClient({
                         </div>
                     )}
 
-                    {activeView === 'instagram' && (
+                    {!isLoading && activeView === 'instagram' && (
                         <div className="fade-in">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {instagramData?.map((item) => (

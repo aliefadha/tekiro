@@ -93,7 +93,7 @@ export default function ECatalogueContent() {
                 key={item.id}
                 className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-center items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300"
               >
-                <Image src={getImageUrl(item.category?.image || '') || ''} alt={item.title || 'Catalogue'} width={250} height={350} className="w-full h-[350px] mx-auto object-cover" />
+                <Image src={getImageUrl(item.category?.image || '') || ''} alt={item.title || 'Catalogue'} width={250} height={350} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" className="w-full h-[350px] mx-auto object-cover" />
                 <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
                 <Link href={getImageUrl(item.file) || '#'} rel="noopener noreferrer" target="_blank" className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
                   <p className={`${roboto.className} font-medium uppercase text-xs`}>download {item.category?.name || 'catalogue'}</p>

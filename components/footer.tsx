@@ -1,13 +1,7 @@
 "use client"
-import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const montserrat = Montserrat({
-    variable: "--font-montserrat",
-    subsets: ["latin"]
-});
 
 export default function Footer() {
     const pathname = usePathname();
@@ -20,12 +14,12 @@ export default function Footer() {
     ];
 
     return (
-        <footer className={`${montserrat.className} w-full bg-[#85E408] text-black font-sans`}>
+        <footer className="font-montserrat w-full bg-[#85E408] text-black font-sans">
             <div className="max-w-[1440px] mx-auto px-6 py-12 lg:px-12 grid grid-cols-1 md:grid-cols-3 gap-12">
                 <div className="flex flex-col justify-between">
                     <div>
                         <div className="flex items-center gap-2 mb-6">
-                            <Image src="/logo-navbar.webp" alt="tekiro" width={150} height={100} />
+                            <Image src="/logo-navbar.webp" alt="tekiro" width={150} height={100} priority sizes="150px" />
                         </div>
 
                         <p className="text-sm font-medium leading-relaxed max-w-sm mb-8">
@@ -66,17 +60,10 @@ export default function Footer() {
                     {/* Official Store Section */}
                     <h3 className="text-xl font-bold mb-6">OFFICIAL STORE</h3>
                     <div className="flex items-center gap-4 mb-10">
-                        {/* Icon 1 (Mascot placeholder) */}
-                        <Image src="/monotaro.png" alt="monotaro" width={40} height={40} />
-
-                        {/* Icon 2 (Lazada - Heart/L placeholder) */}
-                        <Image src="/lazada.png" alt="lazada" width={40} height={40} />
-
-                        {/* Icon 3 (Tokopedia - Green Owl/Bird placeholder) */}
-                        <Image src="/tokopedia.png" alt="tokopedia" width={40} height={40} />
-
-                        {/* Icon 4 (Shopee - Orange Bag placeholder) */}
-                        <Image src="/shopee.webp" alt="shopee" width={40} height={40} />
+                        <Image src="/monotaro.png" alt="monotaro" width={40} height={40} sizes="40px" />
+                        <Image src="/lazada.png" alt="lazada" width={40} height={40} sizes="40px" />
+                        <Image src="/tokopedia.png" alt="tokopedia" width={40} height={40} sizes="40px" />
+                        <Image src="/shopee.webp" alt="shopee" width={40} height={40} sizes="40px" />
                     </div>
 
                     {/* Follow Us Section */}

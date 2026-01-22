@@ -1,21 +1,9 @@
 "use client";
 import { ChevronDown, MapPin, Search, Menu, X } from "lucide-react";
-import { Montserrat, Roboto } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-
-const roboto = Roboto({
-    variable: "--font-roboto",
-    subsets: ["latin"],
-    weight: ["400", "500", "700"],
-});
-
-const montserrat = Montserrat({
-    variable: "--font-montserrat",
-    subsets: ["latin"],
-});
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -46,15 +34,15 @@ export default function Navbar() {
 
     return (
         <header className="w-full sticky top-0 z-50">
-            <div className={`${montserrat.className} font-medium w-full bg-[#85E408] text-center text-black p-1 md:p-2.5`}>
+            <div className="font-montserrat font-medium w-full bg-[#85E408] text-center text-black p-1 md:p-2.5">
                 <h1>OFFICIAL TEKIRO WEBSITE</h1>
             </div>
-            <nav className={`${roboto.variable} z-20 relative w-full bg-black text-white`}>
+            <nav className="font-roboto z-20 relative w-full bg-black text-white">
                 <div className="mx-auto px-6 lg:px-4 xl:px-10 h-20 lg:h-28 flex items-center justify-between gap-4 lg:gap-4 xl:gap-12">
 
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-2 shrink-0">
-                        <Image src="/logo-navbar.webp" alt="tekiro" width={120} height={80} className="grayscale invert w-[100px] h-auto" />
+                        <Image src="/logo-navbar.webp" alt="tekiro" width={120} height={80} priority sizes="120px" className="grayscale invert w-[100px] h-auto" />
                     </Link>
 
                     {/* Desktop Menu */}
@@ -98,8 +86,7 @@ export default function Navbar() {
                                             <li key={child.label} className=" py-3 px-4 text-[#427402] hover:bg-[#33373d] hover:text-white transition-colors duration-150">
                                                 <Link
                                                     href={child.href}
-                                                    className={`${roboto.className}`}
-                                                >
+                                                    className="font-roboto">
                                                     {child.label}
                                                 </Link>
                                             </li>

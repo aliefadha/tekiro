@@ -44,6 +44,8 @@ export default function Modal({ isOpen, onClose, imageSrc, children }: ModalProp
                                 alt="Modal content"
                                 width={800}
                                 height={600}
+                                priority
+                                sizes="(max-width: 768px) 100vw, 66vw"
                                 className="w-full h-auto object-cover"
                             />
                         </div>

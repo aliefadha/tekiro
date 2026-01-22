@@ -3,18 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
-import { Montserrat, Roboto } from "next/font/google";
 import { getSlugLabel } from "@/lib/slug-label";
-
-const montserrat = Montserrat({
-  variable: "--font-montserrat",
-  subsets: ["latin"]
-});
-
-const roboto = Roboto({
-  variable: "--font-roboto",
-  subsets: ["latin"]
-});
 
 interface ProductCardProps {
   imageSrc: string;
@@ -40,13 +29,15 @@ export default function ProductCard({
           src={imageSrc}
           alt={imageAlt}
           fill
+          priority
+          sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 14vw"
           className="object-cover"
         />
       </div>
-      <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{title}</h1>
-      <h1 className={`${montserrat.className} font-medium capitalize text-xl text-[#427402]`}>{category}</h1>
+      <h1 className={`font-montserrat font-bold uppercase text-2xl text-[#85E408]`}>{title}</h1>
+      <h1 className={`font-montserrat font-medium capitalize text-xl text-[#427402]`}>{category}</h1>
       <Link href={href} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black">
-        <p className={`${roboto.className} font-medium uppercase text-sm`}>read more</p>
+        <p className={`font-roboto font-medium uppercase text-sm`}>read more</p>
       </Link>
     </div>
   );

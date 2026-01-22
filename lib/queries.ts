@@ -115,3 +115,47 @@ export function useCatalogues() {
     }
   )
 }
+
+export function useGallery() {
+  return useApiGet(
+    ['gallery'],
+    () => apiClient.get<Array<{
+      id: string
+      title: string
+      image: string
+    }>>('/gallery'),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
+
+export function useInstagram() {
+  return useApiGet(
+    ['instagram'],
+    () => apiClient.get<Array<{
+      id: string
+      title: string
+      link: string
+      image: string
+    }>>('/instagram'),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
+
+export function useCordlessProducts() {
+  return useApiGet(
+    ['cordlessProducts'],
+    () => apiClient.get<Array<{
+      id: string
+      title: string
+      description: string
+      link: string
+    }>>('/cordless'),
+    {
+      staleTime: 1000 * 60 * 5,
+    }
+  )
+}
