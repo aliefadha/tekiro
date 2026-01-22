@@ -1,9 +1,10 @@
 "use client";
-import { ChevronDown, MapPin, Search, Menu, X } from "lucide-react";
+import { ChevronDown, MapPin, Menu, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
+import Search from "./Search";
 
 export default function Navbar() {
     const pathname = usePathname();
@@ -100,11 +101,7 @@ export default function Navbar() {
                     {/* Desktop Right Icons & Search */}
                     <div className="hidden lg:flex items-center gap-6 lg:gap-3 xl:gap-6">
                         <div className="flex gap-2 h-10">
-                            <input type="text" placeholder="Search products" className="bg-white h-full px-4 w-32 text-gray-700 outline-none placeholder-gray-400 text-xs" />
-                            <button className="h-full bg-[#333333] px-2.5 flex items-center gap-2 text-gray-300 hover:text-white transition-colors text-sm">
-                                <Search />
-                                <span className="hidden xl:inline">Search</span>
-                            </button>
+                            <Search />
                         </div>
 
                         <Link href="/where-to-buy" className="hover:text-gray-300">
@@ -137,10 +134,7 @@ export default function Navbar() {
                     <div className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-gray-800 text-white z-40 pb-6">
                         <div className="px-6 py-4 border-b border-gray-800">
                             <div className="flex gap-2 h-10 w-full">
-                                <input type="text" placeholder="Search products" className="bg-white flex-1 px-4 text-gray-700 outline-none placeholder-gray-400 text-sm" />
-                                <button className="bg-[#333333] px-4 flex items-center justify-center text-gray-300 hover:text-white transition-colors">
-                                    <Search size={20} />
-                                </button>
+                                <Search />
                             </div>
                         </div>
 

@@ -159,3 +159,18 @@ export function useCordlessProducts() {
     }
   )
 }
+
+export function useSearchProducts(query: string) {
+  return useApiGet(
+    ['searchProducts', query],
+    () => apiClient.get<Array<{
+      id: string
+      name: string
+      images: string[]
+    }>>(`/product/search/${encodeURIComponent(query)}`),
+    {
+      enabled: query.trim().length >= 2,
+      staleTime: 1000 * 60 * 2,
+    }
+  )
+}

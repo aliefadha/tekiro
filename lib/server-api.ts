@@ -130,3 +130,11 @@ export async function getArticleBySlug(slug: string) {
     publishedAt: string
   }>(`/article/slug/${slug}`)
 }
+
+export async function searchProducts(query: string) {
+  return apiClient.get<Array<{
+    id: string
+    name: string
+    images: string[]
+  }>>(`/product/search/${encodeURIComponent(query)}`)
+}
