@@ -8,6 +8,8 @@ import { useProductById, useRelatedProducts } from "@/lib/queries"
 import { getImageUrl } from "@/lib/utils"
 import Script from "next/script"
 import { generateProductSchema } from "@/lib/schema"
+import { PageSkeleton, RelatedProductsSkeleton } from "@/components/ui/Skeleton"
+import { ErrorBoundary } from "@/components/ErrorBoundary"
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -27,11 +29,7 @@ export default function ProductContent({ slug }: { slug: string }) {
   const relatedProducts = (relatedResponse?.data || []) as Array<{ id: string; name: string; images: string[] }>
 
   if (isProductLoading) {
-    return (
-      <div className="min-h-[400px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#85E408]"></div>
-      </div>
-    )
+    return <PageSkeleton />
   }
 
   if (!product) {
@@ -122,32 +120,28 @@ export default function ProductContent({ slug }: { slug: string }) {
               <h1 className="text-white font-semibold text-2xl lg:text-4xl uppercase">Product Related</h1>
             </div>
             {isRelatedLoading ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto w-2/3">
-                {Array.from({ length: 3 }).map((_, i) => (
-                  <div key={i} className="animate-pulse">
-                    <div className="bg-gray-200 border border-black w-full h-[300px]" />
-                  </div>
-                ))}
-              </div>
+              <RelatedProductsSkeleton />
             ) : (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto w-2/3">
-                {relatedProducts.length > 0 ? (
-                  relatedProducts.map((relatedProduct) => (
-                    <div
-                      key={relatedProduct.id}
-                      className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-start items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"
-                    >
-                      <Image src={getImageUrl(relatedProduct.images?.[0]) || '/placeholder.webp'} alt={relatedProduct.name} width={300} height={300} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" className="w-full h-[300px] mx-auto object-cover" />
-                      <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{relatedProduct.name}</h1>
-                      <Link href={`/product/${relatedProduct.id}`} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
-                        <p className={`${roboto.className} font-medium uppercase text-sm`}>read more</p>
-                      </Link>
-                    </div>
-                  ))
-                ) : (
-                  <p className="text-white col-span-full text-center py-10">No related products found</p>
-                )}
-              </div>
+              <ErrorBoundary fallback={<div className="text-white text-center py-10">Failed to load related products</div>}>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mx-auto w-2/3">
+                  {relatedProducts.length > 0 ? (
+                    relatedProducts.map((relatedProduct) => (
+                      <div
+                        key={relatedProduct.id}
+                        className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-start items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"
+                      >
+                        <Image src={getImageUrl(relatedProduct.images?.[0]) || '/placeholder.webp'} alt={relatedProduct.name} width={300} height={300} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" className="w-full h-[300px] mx-auto object-cover" />
+                        <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{relatedProduct.name}</h1>
+                        <Link href={`/product/${relatedProduct.id}`} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
+                          <p className={`${roboto.className} font-medium uppercase text-sm`}>read more</p>
+                        </Link>
+                      </div>
+                    ))
+                  ) : (
+                    <p className="text-white col-span-full text-center py-10">No related products found</p>
+                  )}
+                </div>
+              </ErrorBoundary>
             )}
           </div>
         </div>

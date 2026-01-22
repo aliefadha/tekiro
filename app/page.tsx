@@ -15,6 +15,7 @@ import 'swiper/css/pagination';
 
 import { useLatestProducts } from '@/lib/queries';
 import { getImageUrl } from "@/lib/utils";
+import { ProductGridSkeleton } from '@/components/ui/Skeleton';
 
 
 export default function Home() {
@@ -111,15 +112,7 @@ export default function Home() {
       <div className="p-6 md:p-24 flex flex-col gap-10">
         <h2 className={`font-montserrat font-bold uppercase text-3xl text-center md:text-left`}>latest product</h2>
         {isLoading ? (
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
-            {Array.from({ length: 7 }).map((_, i) => (
-              <div key={i} className="animate-pulse h-[450px]">
-                <div className="bg-gray-200 border border-black w-full h-[300px]" />
-                <div className="h-4 bg-gray-200 mt-2.5 w-3/4" />
-                <div className="h-8 bg-gray-200 mt-2.5 w-full" />
-              </div>
-            ))}
-          </div>
+          <ProductGridSkeleton />
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
             {products.map((product: { id: string; name: string; images: string[] }) => (

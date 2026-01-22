@@ -5,6 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useCategories } from "@/lib/queries";
 import { getImageUrl } from "@/lib/utils";
+import { PageSkeleton } from "@/components/ui/Skeleton";
+import { ErrorBoundary } from "@/components/ErrorBoundary";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -21,11 +23,7 @@ export default function AllProductPage() {
   const { data, isLoading, error } = useCategories();
 
   if (isLoading) {
-    return (
-      <div className="min-h-[500px] flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#85E408]"></div>
-      </div>
-    );
+    return <PageSkeleton />
   }
 
   if (error || !data?.data) {
@@ -58,20 +56,22 @@ export default function AllProductPage() {
       </div>
 
       <div className="mt-20">
-        <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full px-4 md:px-10 gap-4">
-          {catalogues.map((item: { title: string; image: string; href: string }) => (
-            <div
-              key={item.title}
-              className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-center items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"
-            >
-              <Image src={getImageUrl(item.image)} alt={item.title} width={250} height={350} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" className="w-full h-[350px] object-cover mx-auto" />
-              <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
-              <Link href={item.href} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
-                <p className={`${roboto.className} font-medium uppercase text-sm`}>explore now</p>
-              </Link>
-            </div>
-          ))}
-        </div>
+        <ErrorBoundary fallback={<div className="text-center py-20">Failed to load categories</div>}>
+          <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 w-full px-4 md:px-10 gap-4">
+            {catalogues.map((item: { title: string; image: string; href: string }) => (
+              <div
+                key={item.title}
+                className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-center items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 shadow-none hover:shadow-[0_0_20px_5px_#85E408]"
+              >
+                <Image src={getImageUrl(item.image)} alt={item.title} width={250} height={350} sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw" className="w-full h-[350px] object-cover mx-auto" />
+                <h1 className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408]`}>{item.title}</h1>
+                <Link href={item.href} className="border-b-2 border-[#85E408] hover:bg-[#85E408] py-3 px-4 rounded-sm text-[#85E408] hover:text-black" >
+                  <p className={`${roboto.className} font-medium uppercase text-sm`}>explore now</p>
+                </Link>
+              </div>
+            ))}
+          </div>
+        </ErrorBoundary>
       </div>
     </>
   )
