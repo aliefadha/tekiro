@@ -19,6 +19,7 @@ export default function Navbar() {
         { label: "E-catalogue", href: "/e-catalogue" },
         { label: "Blog", href: "/blog" },
         { label: "About Us", href: "/about-us" },
+        { label: "Events", href: "/events" },
     ];
 
     const contactChildren = [

@@ -88,7 +88,7 @@ export default function ProductContent({ slug }: { slug: string }) {
                 <div className="flex gap-4 h-full">
                   <div className="bg-[#85E408] p-1 rounded-md h-full">
                     <Link href={product.storeUrl || '#'} target="_blank" rel="noopener noreferrer">
-                      <Image src="/monotaro.webp" width={40} height={40} alt="monotaro" className="h-10 w-10 object-contain" />
+                      <Image src="/monotaro.png" width={40} height={40} alt="monotaro" className="h-10 w-10 object-contain" />
                     </Link>
                   </div>
                   <div className="bg-[#85E408] p-1 rounded-md h-full">
@@ -103,7 +103,7 @@ export default function ProductContent({ slug }: { slug: string }) {
                   </div>
                   <div className="bg-[#85E408] p-1 rounded-md h-full">
                     <Link href="https://shopee.com" target="_blank" rel="noopener noreferrer">
-                      <Image src="/shopee.png" width={40} height={40} alt="shopee" className="h-10 w-10 object-contain" />
+                      <Image src="/shopee.webp" width={40} height={40} alt="shopee" className="h-10 w-10 object-contain" />
                     </Link>
                   </div>
                 </div>
