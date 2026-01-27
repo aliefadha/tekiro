@@ -84,7 +84,7 @@ export default function Modal({
     >
       <div
         ref={modalRef}
-        className="relative  max-w-lg md:max-w-2xl transform transition-all duration-300 scale-100 opacity-100 flex flex-col max-h-[calc(100vh-2rem)]"
+        className="relative max-w-lg md:max-w-4xl transform transition-all duration-300 scale-100 opacity-100 flex flex-col max-h-screen"
       >
         <button
           onClick={onClose}
@@ -94,7 +94,7 @@ export default function Modal({
           ×
         </button>
 
-        <div className="p-2 bg-white flex flex-col">
+        <div className="p-2 bg-white flex flex-col overflow-y-auto">
           {imageSrc && (
             <Image
               src={imageSrc}
@@ -103,7 +103,7 @@ export default function Modal({
               height={600}
               priority
               sizes="(max-width: 768px) 100vw, 66vw"
-              className="w-full h-auto max-h-[calc(100vh-6rem)] object-cover"
+              className="w-full h-screen object-cover"
             />
           )}
           {children}
