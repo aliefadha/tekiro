@@ -77,14 +77,14 @@ export default function Modal({
 
   return (
     <div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-2"
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-2"
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
     >
       <div
         ref={modalRef}
-        className="relative bg-white shadow-xl w-full max-w-lg md:max-w-2xl transform transition-all duration-300 scale-100 opacity-100 flex flex-col max-h-[100vh]"
+        className="relative  max-w-lg md:max-w-2xl transform transition-all duration-300 scale-100 opacity-100 flex flex-col max-h-[calc(100vh-2rem)]"
       >
         <button
           onClick={onClose}
@@ -94,7 +94,7 @@ export default function Modal({
           ×
         </button>
 
-        <div className="p-2 overflow-y-auto">
+        <div className="p-2 bg-white flex flex-col">
           {imageSrc && (
             <Image
               src={imageSrc}
@@ -103,7 +103,7 @@ export default function Modal({
               height={600}
               priority
               sizes="(max-width: 768px) 100vw, 66vw"
-              className="w-full h-auto object-cover"
+              className="w-full h-auto max-h-[calc(100vh-6rem)] object-cover"
             />
           )}
           {children}
