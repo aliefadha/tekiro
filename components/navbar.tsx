@@ -7,209 +7,271 @@ import { useState } from "react";
 import Search from "./Search";
 
 export default function Navbar() {
-    const pathname = usePathname();
-    const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isContactOpen, setIsContactOpen] = useState(false);
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isContactOpen, setIsContactOpen] = useState(false);
 
-    const navItems = [
-        { label: "Home", href: "/" },
-        { label: "Product", href: "/product" },
-        { label: "Gallery", href: "/gallery" },
-        { label: "Cordless", href: "/cordless" },
-        { label: "E-catalogue", href: "/e-catalogue" },
-        { label: "Blog", href: "/blog" },
-        { label: "About Us", href: "/about-us" },
-        { label: "Events", href: "/events" },
-    ];
+  const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Product", href: "/product" },
+    { label: "Gallery", href: "/gallery" },
+    { label: "Cordless", href: "/cordless" },
+    { label: "E-catalogue", href: "/e-catalogue" },
+    { label: "Blog", href: "/blog" },
+    { label: "About Us", href: "/about-us" },
+  ];
 
-    const contactChildren = [
-        { label: "Customer Care Contact", href: "/contact" },
-        { label: "Altama E Care", href: "https://play.google.com/store/apps/details?id=id.co.carepoint" },
-        { label: "Where to Buy", href: "/where-to-buy" },
-        { label: "International", href: "/international" },
-    ];
+  const contactChildren = [
+    { label: "Customer Care Contact", href: "/contact" },
+    {
+      label: "Altama E Care",
+      href: "https://play.google.com/store/apps/details?id=id.co.carepoint",
+    },
+    { label: "Where to Buy", href: "/where-to-buy" },
+    { label: "International", href: "/international" },
+  ];
 
-    const isPathActive = (href: string) =>
-        pathname === href || (href !== "/" && pathname.startsWith(href));
+  const isPathActive = (href: string) =>
+    pathname === href || (href !== "/" && pathname.startsWith(href));
 
-    const isContactActive = contactChildren.some((child) => isPathActive(child.href));
+  const isContactActive = contactChildren.some((child) =>
+    isPathActive(child.href),
+  );
 
-    return (
-        <header className="w-full sticky top-0 z-50">
-            <div className="font-montserrat font-medium w-full bg-[#85E408] text-center text-black p-1 md:p-2.5">
-                <span className="text-sm md:text-base font-bold uppercase">OFFICIAL TEKIRO WEBSITE</span>
-            </div>
-            <nav className="font-roboto z-20 relative w-full bg-black text-white">
-                <div className="mx-auto px-6 lg:px-4 xl:px-10 h-20 lg:h-28 flex items-center justify-between gap-4 lg:gap-4 xl:gap-12">
+  return (
+    <header className="w-full sticky top-0 z-50">
+      <div className="font-montserrat font-medium w-full bg-[#85E408] text-center text-black p-1 md:p-2.5">
+        <span className="text-sm md:text-base font-bold uppercase">
+          OFFICIAL TEKIRO WEBSITE
+        </span>
+      </div>
+      <nav className="font-roboto z-20 relative w-full bg-black text-white">
+        <div className="mx-auto px-6 lg:px-4 xl:px-10 h-20 lg:h-28 flex items-center justify-between gap-4 lg:gap-4 xl:gap-12">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-2 shrink-0">
+            <Image
+              src="/logo-navbar.webp"
+              alt="tekiro"
+              width={120}
+              height={80}
+              priority
+              sizes="120px"
+              className="grayscale invert w-[100px] h-auto"
+            />
+          </Link>
 
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-2 shrink-0">
-                        <Image src="/logo-navbar.webp" alt="tekiro" width={120} height={80} priority sizes="120px" className="grayscale invert w-[100px] h-auto" />
-                    </Link>
+          {/* Desktop Menu */}
+          <div className="hidden lg:flex flex-1 items-center">
+            <div className="flex items-start gap-6 lg:gap-3 xl:gap-6 font-bold">
+              <ul className="flex items-start gap-6 lg:gap-3 xl:gap-6">
+                {navItems.map((item) => {
+                  const active = isPathActive(item.href);
+                  return (
+                    <li key={item.label}>
+                      <Link
+                        href={item.href}
+                        aria-current={active ? "page" : undefined}
+                        className={`text-base relative inline-block pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${
+                          active
+                            ? "mb-2 after:bg-white after:scale-x-100 after:origin-center"
+                            : "after:bg-white after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-right"
+                        }`}
+                      >
+                        {item.label}
+                      </Link>
+                    </li>
+                  );
+                })}
+              </ul>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden lg:flex flex-1 items-center">
-                        <div className="flex items-start gap-6 lg:gap-3 xl:gap-6 font-bold">
-                            <ul className="flex items-start gap-6 lg:gap-3 xl:gap-6">
-                                {navItems.map((item) => {
-                                    const active = isPathActive(item.href);
-                                    return (
-                                        <li key={item.label}>
-                                            <Link
-                                                href={item.href}
-                                                aria-current={active ? "page" : undefined}
-                                                className={`text-base relative inline-block pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${active
-                                                    ? "mb-2 after:bg-white after:scale-x-100 after:origin-center"
-                                                    : "after:bg-white after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-right"
-                                                    }`}
-                                            >
-                                                {item.label}
-                                            </Link>
-                                        </li>
-                                    );
-                                })}
-                            </ul>
-
-                            <div className="relative group">
-                                <Link
-                                    href="/contact"
-                                    aria-current={isContactActive ? "page" : undefined}
-                                    aria-expanded={isContactOpen}
-                                    aria-haspopup="true"
-                                    className={`relative inline-flex items-center gap-1 pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${isContactActive
-                                        ? "after:bg-white after:scale-x-100 after:origin-center"
-                                        : "after:bg-white after:scale-x-0 after:origin-right group-hover:after:scale-x-100 group-hover:after:origin-right"
-                                        }`}
-                                >
-                                    Contact
-                                    <ChevronDown size={18} />
-                                </Link>
-                                <div
-                                    role="menu"
-                                    aria-label="Contact options"
-                                    className="absolute left-0 top-full w-56 bg-white border border-[#1f1f1f] z-10 shadow-xl opacity-0 pointer-events-none transition-all duration-200 ease-out translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0"
-                                >
-                                    <ul className="flex flex-col gap-2 text-sm font-medium">
-                                        {contactChildren.map((child) => (
-                                            <li key={child.label} className=" py-3 px-4 text-[#427402] hover:bg-[#33373d] hover:text-white transition-colors duration-150">
-                                                <Link
-                                                    href={child.href}
-                                                    role="menuitem"
-                                                    className="font-roboto">
-                                                    {child.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    {/* Desktop Right Icons & Search */}
-                    <div className="hidden lg:flex items-center gap-6 lg:gap-3 xl:gap-6">
-                        <div className="flex gap-2 h-10">
-                            <Search />
-                        </div>
-
-                        <Link href="/where-to-buy" className="hover:text-gray-300">
-                            <MapPin />
-                        </Link>
-
-                        <Link href="/contact" className="hover:text-gray-300 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"></path></svg>
-                        </Link>
-                    </div>
-
-                    {/* Mobile Right Section (Icons + Hamburger) */}
-                    <div className="flex lg:hidden items-center gap-4">
-                        <Link href="/where-to-buy" className="hover:text-gray-300">
-                            <MapPin size={24} />
-                        </Link>
-
-                        <Link href="/contact" className="hover:text-gray-300 text-white">
-                            <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#fff"><path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"></path></svg>
-                        </Link>
-
-                        <button
-                            onClick={() => setIsMenuOpen(!isMenuOpen)}
-                            aria-expanded={isMenuOpen}
-                            aria-controls="mobile-menu"
-                            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                            className="text-white focus:outline-none"
+              <div className="relative group">
+                <Link
+                  href="/contact"
+                  aria-current={isContactActive ? "page" : undefined}
+                  aria-expanded={isContactOpen}
+                  aria-haspopup="true"
+                  className={`relative inline-flex items-center gap-1 pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${
+                    isContactActive
+                      ? "after:bg-white after:scale-x-100 after:origin-center"
+                      : "after:bg-white after:scale-x-0 after:origin-right group-hover:after:scale-x-100 group-hover:after:origin-right"
+                  }`}
+                >
+                  Contact
+                  <ChevronDown size={18} />
+                </Link>
+                <div
+                  role="menu"
+                  aria-label="Contact options"
+                  className="absolute left-0 top-full w-56 bg-white border border-[#1f1f1f] z-10 shadow-xl opacity-0 pointer-events-none transition-all duration-200 ease-out translate-y-2 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0"
+                >
+                  <ul className="flex flex-col gap-2 text-sm font-medium">
+                    {contactChildren.map((child) => (
+                      <li
+                        key={child.label}
+                        className=" py-3 px-4 text-[#427402] hover:bg-[#33373d] hover:text-white transition-colors duration-150"
+                      >
+                        <Link
+                          href={child.href}
+                          role="menuitem"
+                          className="font-roboto"
                         >
-                            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                        </button>
-                    </div>
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
+              </div>
+              <Link
+                href="/events"
+                className="bg-[#85E408] text-black px-5 py-2 font-bold text-sm uppercase transition-all hover:bg-[#72c207] active:scale-95 whitespace-nowrap"
+              >
+                TMC 2026
+              </Link>
+            </div>
+          </div>
 
-                {/* Mobile Menu Dropdown */}
-                {isMenuOpen && (
-                    <div id="mobile-menu" role="navigation" aria-label="Mobile menu" className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-gray-800 text-white z-40 pb-6">
-                        <div className="px-6 py-4 border-b border-gray-800">
-                            <div className="flex gap-2 h-10 w-full">
-                                <Search />
-                            </div>
-                        </div>
+          {/* Desktop Right Icons & Search */}
+          <div className="hidden lg:flex items-center gap-6 lg:gap-3 xl:gap-6">
+            <div className="flex gap-2 h-10">
+              <Search />
+            </div>
 
-                        <ul className="flex flex-col">
-                            {navItems.map((item) => {
-                                const active = isPathActive(item.href);
-                                return (
-                                    <li key={item.label} className="border-b border-gray-800 last:border-0">
-                                        <Link
-                                            href={item.href}
-                                            onClick={() => setIsMenuOpen(false)}
-                                            className={`block py-3 px-6 text-xs font-bold uppercase hover:bg-gray-900 transition-colors ${active ? "text-[#85E408]" : "text-white"}`}
-                                        >
-                                            {item.label}
-                                        </Link>
-                                    </li>
-                                );
-                            })}
+            <Link href="/where-to-buy" className="hover:text-gray-300">
+              <MapPin />
+            </Link>
 
-                            {/* Contact Dropdown Links in Mobile */}
-                            <li className="border-b border-gray-800">
-                                <button
-                                    onClick={() => setIsContactOpen(!isContactOpen)}
-                                    aria-expanded={isContactOpen}
-                                    aria-controls="mobile-contact-menu"
-                                    className="w-full flex items-center justify-between py-3 px-6 text-sm font-bold uppercase text-white hover:bg-gray-900 transition-colors"
-                                >
-                                    Contact
-                                    <ChevronDown
-                                        size={18}
-                                        className={`transition-transform duration-200 ${isContactOpen ? "rotate-180" : ""}`}
-                                    />
-                                </button>
-                                <div
-                                    id="mobile-contact-menu"
-                                    role="menu"
-                                    aria-label="Contact options"
-                                    className={`overflow-hidden transition-all duration-300 ease-in-out ${isContactOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
-                                >
-                                    <ul className="bg-gray-900">
-                                        {contactChildren.map((child) => (
-                                            <li key={child.label} className="border-b border-gray-800 last:border-0">
-                                                <Link
-                                                    href={child.href}
-                                                    onClick={() => setIsMenuOpen(false)}
-                                                    role="menuitem"
-                                                    className="block py-3 px-10 text-sm text-gray-300 hover:text-white"
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            </li>
-                                        ))}
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                )}
+            <Link href="/contact" className="hover:text-gray-300 text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fff"
+              >
+                <path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"></path>
+              </svg>
+            </Link>
+          </div>
 
-                <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#85E408]"></div>
-            </nav>
-        </header>
-    );
+          {/* Mobile Right Section (Icons + Hamburger) */}
+          <div className="flex lg:hidden items-center gap-4">
+            <Link href="/where-to-buy" className="hover:text-gray-300">
+              <MapPin size={24} />
+            </Link>
+
+            <Link href="/contact" className="hover:text-gray-300 text-white">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="24px"
+                viewBox="0 -960 960 960"
+                width="24px"
+                fill="#fff"
+              >
+                <path d="M440-120v-80h320v-284q0-117-81.5-198.5T480-764q-117 0-198.5 81.5T200-484v244h-40q-33 0-56.5-23.5T80-320v-80q0-21 10.5-39.5T120-469l3-53q8-68 39.5-126t79-101q47.5-43 109-67T480-840q68 0 129 24t109 66.5Q766-707 797-649t40 126l3 52q19 9 29.5 27t10.5 38v92q0 20-10.5 38T840-249v49q0 33-23.5 56.5T760-120H440Zm-80-280q-17 0-28.5-11.5T320-440q0-17 11.5-28.5T360-480q17 0 28.5 11.5T400-440q0 17-11.5 28.5T360-400Zm240 0q-17 0-28.5-11.5T560-440q0-17 11.5-28.5T600-480q17 0 28.5 11.5T640-440q0 17-11.5 28.5T600-400Zm-359-62q-7-106 64-182t177-76q89 0 156.5 56.5T720-519q-91-1-167.5-49T435-698q-16 80-67.5 142.5T241-462Z"></path>
+              </svg>
+            </Link>
+
+            <button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              aria-expanded={isMenuOpen}
+              aria-controls="mobile-menu"
+              aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+              className="text-white focus:outline-none"
+            >
+              {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
+          </div>
+        </div>
+
+        {/* Mobile Menu Dropdown */}
+        {isMenuOpen && (
+          <div
+            id="mobile-menu"
+            role="navigation"
+            aria-label="Mobile menu"
+            className="lg:hidden absolute top-full left-0 w-full bg-black border-t border-gray-800 text-white z-40 pb-6"
+          >
+            <div className="px-6 py-4 border-b border-gray-800">
+              <div className="flex gap-2 h-10 w-full">
+                <Search />
+              </div>
+            </div>
+
+            <ul className="flex flex-col">
+              {navItems.map((item) => {
+                const active = isPathActive(item.href);
+                return (
+                  <li
+                    key={item.label}
+                    className="border-b border-gray-800 last:border-0"
+                  >
+                    <Link
+                      href={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className={`block py-3 px-6 text-xs font-bold uppercase hover:bg-gray-900 transition-colors ${active ? "text-[#85E408]" : "text-white"}`}
+                    >
+                      {item.label}
+                    </Link>
+                  </li>
+                );
+              })}
+
+              <li className="px-6 py-4">
+                <Link
+                  href="/events"
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block w-full text-center bg-[#85E408] text-black py-4 text-sm font-bold uppercase transition-all hover:bg-[#72c207] active:scale-95"
+                >
+                  Events
+                </Link>
+              </li>
+
+              {/* Contact Dropdown Links in Mobile */}
+              <li className="border-b border-gray-800">
+                <button
+                  onClick={() => setIsContactOpen(!isContactOpen)}
+                  aria-expanded={isContactOpen}
+                  aria-controls="mobile-contact-menu"
+                  className="w-full flex items-center justify-between py-3 px-6 text-sm font-bold uppercase text-white hover:bg-gray-900 transition-colors"
+                >
+                  Contact
+                  <ChevronDown
+                    size={18}
+                    className={`transition-transform duration-200 ${isContactOpen ? "rotate-180" : ""}`}
+                  />
+                </button>
+                <div
+                  id="mobile-contact-menu"
+                  role="menu"
+                  aria-label="Contact options"
+                  className={`overflow-hidden transition-all duration-300 ease-in-out ${isContactOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+                >
+                  <ul className="bg-gray-900">
+                    {contactChildren.map((child) => (
+                      <li
+                        key={child.label}
+                        className="border-b border-gray-800 last:border-0"
+                      >
+                        <Link
+                          href={child.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          role="menuitem"
+                          className="block py-3 px-10 text-sm text-gray-300 hover:text-white"
+                        >
+                          {child.label}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            </ul>
+          </div>
+        )}
+
+        <div className="absolute bottom-0 left-0 w-full h-1.5 bg-[#85E408]"></div>
+      </nav>
+    </header>
+  );
 }
