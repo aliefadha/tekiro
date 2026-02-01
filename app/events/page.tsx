@@ -70,8 +70,15 @@ function FAQSection() {
 export default function EventsPage() {
   return (
     <>
-      <div className="min-h-[500px] object-contain bg-[url(/events.webp)] bg-top bg-cover">
-        <div className="bg-black/60 min-h-[500px]"></div>
+      <div className="min-h-[500px] w-full bg-black relative overflow-hidden">
+        <iframe
+          className="absolute top-1/2 left-1/2 w-[150%] h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
+          src="https://www.youtube.com/embed/bT63Ag44sFo?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1"
+          title="Tekiro Mechanic Competition 2025"
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+        ></iframe>
       </div>
 
       <div className="relative">
@@ -94,7 +101,12 @@ export default function EventsPage() {
               <br />
               Siswa SMK se-Indonesia
             </p>
-            <button className="bg-[#85E408] hover:bg-[#6BC206] text-black font-bold px-8 py-3 inline-flex items-center gap-4 transition-colors">
+            <a
+              href="https://drive.google.com/file/d/1tj8MHYpSomBInaj2HNGOH03AkeJNTQU5/view?usp=drive_link"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#85E408] hover:bg-[#6BC206] text-black font-bold px-8 py-3 inline-flex items-center gap-4 transition-colors"
+            >
               Download Panduan
               <svg
                 width="18"
@@ -108,7 +120,7 @@ export default function EventsPage() {
                   fill="#121212"
                 />
               </svg>
-            </button>
+            </a>
           </div>
         </div>
       </div>
@@ -192,7 +204,9 @@ export default function EventsPage() {
             KESERUAN TEKIRO MECHANIC COMPETITION 2025
           </h2>
           <Link
-            href="#"
+            href="https://youtu.be/IB6vJUaDbD0?si=sb6Nu87AAbFFwXZO"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-3 bg-black text-white font-bold px-8 py-3 hover:bg-gray-900 transition-colors"
           >
             Lihat Selengkapnya
@@ -570,15 +584,23 @@ export default function EventsPage() {
           DISELENGGARAKAN OLEH
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-black h-32 md:h-48 flex items-center justify-center text-white">
-            * LOGO
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div className="h-24 flex items-center justify-center text-white relative">
+            <Image
+              src="/logo-smk.webp"
+              alt="logo smk"
+              fill
+              className="object-contain p-4 transition-transform"
+            />
+
           </div>
-          <div className="bg-black h-32 md:h-48 flex items-center justify-center text-white">
-            * LOGO
-          </div>
-          <div className="bg-black h-32 md:h-48 flex items-center justify-center text-white">
-            * LOGO
+          <div className="h-24 flex items-center justify-center text-white relative">
+            <Image
+              src="/logo-navbar.webp"
+              alt="tekiro"
+              fill
+              className="object-contain p-4 transition-transform"
+            />
           </div>
         </div>
       </div>
@@ -608,7 +630,7 @@ export default function EventsPage() {
 
               <span className="font-bold">Email resmi panitia:</span>
             </div>
-            <p className="text-sm">panitiaresmi@gmail.com</p>
+            <p className="text-sm">tekirotools.indonesia@gmail.com</p>
           </div>
 
           {/* Contact Person */}
@@ -628,7 +650,7 @@ export default function EventsPage() {
               </svg>
               <span className="font-bold">Contact person Tekiro:</span>
             </div>
-            <p className="text-sm">+62 8123 1234 1234</p>
+            <p className="text-sm">+62 821 1320 5162</p>
           </div>
 
           {/* Instagram */}
