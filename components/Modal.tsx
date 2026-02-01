@@ -94,7 +94,7 @@ export default function Modal({
           ×
         </button>
 
-        <div className="p-2 bg-white flex flex-col overflow-y-auto">
+        <div className="p-1 bg-white flex flex-col overflow-y-auto m-2">
           {imageSrc && (
             <Image
               src={imageSrc}
