@@ -199,30 +199,20 @@ export default function EventsPage() {
         </div>
 
         {/* Green CTA Section */}
-        <div className="bg-[#85E408] py-16 px-8 text-center">
+        <div className="bg-[#85E408] py-16 px-4  text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-black mb-8 uppercase">
             KESERUAN TEKIRO MECHANIC COMPETITION 2025
           </h2>
-          <Link
-            href="https://youtu.be/IB6vJUaDbD0?si=sb6Nu87AAbFFwXZO"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-black text-white font-bold px-8 py-3 hover:bg-gray-900 transition-colors"
-          >
-            Lihat Selengkapnya
-            <svg
-              width="18"
-              height="18"
-              viewBox="0 0 18 18"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M7.44141 1.14258L8.30859 0.275391C8.67578 -0.0917969 9.26953 -0.0917969 9.63281 0.275391L17.2266 7.86523C17.5938 8.23242 17.5938 8.82617 17.2266 9.18945L9.63281 16.7832C9.26562 17.1504 8.67188 17.1504 8.30859 16.7832L7.44141 15.916C7.07031 15.5449 7.07812 14.9395 7.45703 14.5762L12.1641 10.0918H0.9375C0.417969 10.0918 0 9.67383 0 9.1543V7.9043C0 7.38477 0.417969 6.9668 0.9375 6.9668H12.1641L7.45703 2.48242C7.07422 2.11914 7.06641 1.51367 7.44141 1.14258Z"
-                fill="white"
-              />
-            </svg>
-          </Link>
+          <div className="max-w-6xl mx-auto">
+            <iframe
+              className="w-full h-[400px] md:h-[500px]"
+              src="https://www.youtube.com/embed/IB6vJUaDbD0?rel=0"
+              title="Keseruan Tekiro Mechanic Competition 2025"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
         </div>
       </div>
 
@@ -580,7 +570,7 @@ export default function EventsPage() {
       </div>
       {/* Diselenggarakan Oleh */}
       <div className={`${montserrat.className} container mx-auto px-4 py-16`}>
-        <h2 className="text-3xl font-bold mb-12 uppercase">
+        <h2 className="text-3xl font-bold mb-12 uppercase text-center">
           DISELENGGARAKAN OLEH
         </h2>
 
@@ -592,7 +582,6 @@ export default function EventsPage() {
               fill
               className="object-contain p-4 transition-transform"
             />
-
           </div>
           <div className="h-24 flex items-center justify-center text-white relative">
             <Image

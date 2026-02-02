@@ -62,8 +62,8 @@ export default function Navbar() {
 
           {/* Desktop Menu */}
           <div className="hidden lg:flex flex-1 items-center">
-            <div className="flex items-start gap-6 lg:gap-3 xl:gap-6 font-bold">
-              <ul className="flex items-start gap-6 lg:gap-3 xl:gap-6">
+            <div className="flex items-start gap-2 xl:gap-6 font-bold">
+              <ul className="flex items-start gap-2 xl:gap-6">
                 {navItems.map((item) => {
                   const active = isPathActive(item.href);
                   return (
@@ -71,7 +71,7 @@ export default function Navbar() {
                       <Link
                         href={item.href}
                         aria-current={active ? "page" : undefined}
-                        className={`text-base relative inline-block pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${
+                        className={`text-xs xl:text-base relative inline-block pt-0.5 pb-1 after:absolute after:left-0 after:bottom-0 after:h-[3px] after:w-full after:transition-transform after:duration-300 after:ease-out ${
                           active
                             ? "mb-2 after:bg-white after:scale-x-100 after:origin-center"
                             : "after:bg-white after:scale-x-0 after:origin-right hover:after:scale-x-100 hover:after:origin-right"
@@ -124,7 +124,7 @@ export default function Navbar() {
               </div>
               <Link
                 href="/events"
-                className="bg-[#85E408] text-black px-5 py-2 font-bold text-sm uppercase transition-all hover:bg-[#72c207] active:scale-95 whitespace-nowrap"
+                className="bg-[#85E408] text-black px-2 py-2 font-bold text-sm uppercase transition-all hover:bg-[#72c207] active:scale-95 whitespace-nowrap"
               >
                 TMC 2026
               </Link>
