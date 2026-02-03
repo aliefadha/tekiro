@@ -95,7 +95,10 @@ export default function EventsPage() {
 
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto items-center">
           {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
-            <div key={num} className="bg-white p-4 flex items-center justify-center">
+            <div
+              key={num}
+              className="bg-white p-4 flex items-center justify-center"
+            >
               <Image
                 src={`/sponsor${num}.webp`}
                 alt={`Sponsor ${num}`}
@@ -148,97 +151,6 @@ export default function EventsPage() {
                 />
               </svg>
             </a>
-          </div>
-        </div>
-      </div>
-
-      <div className={`${montserrat.className} container mx-auto px-4 py-16`}>
-        {/* Section Title */}
-        <div className="mb-12">
-          <h2 className="text-3xl font-bold mb-4 uppercase">
-            TEKIRO MECHANIC COMPETITION 2026
-          </h2>
-          <div className="w-full h-[2px] bg-black"></div>
-        </div>
-
-        {/* Image Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
-          {/* Card 1 */}
-          <div className="bg-black p-3 group cursor-pointer">
-            <div className="relative h-[180px] overflow-hidden mb-4">
-              <Image
-                src="/event-1.webp"
-                alt="Press Conference"
-                fill
-                className="object-cover transition-transform"
-              />
-            </div>
-            <p className="text-[#85E408] text-sm font-medium px-3 pb-3">
-              Meningkatkan kompetensi siswa SMK di bidang teknik sepeda motor.
-            </p>
-          </div>
-
-          {/* Card 2 */}
-          <div className="bg-black p-3 group cursor-pointer">
-            <div className="relative h-[180px] overflow-hidden mb-4">
-              <Image
-                src="/event-2.webp"
-                alt="Workshop"
-                fill
-                className="object-cover transition-transform"
-              />
-            </div>
-            <p className="text-[#85E408] text-sm font-medium px-3 pb-3">
-              Menjadi wadah adu keterampilan antar sekolah secara sehat dan
-              profesional.
-            </p>
-          </div>
-
-          {/* Card 3 */}
-          <div className="bg-black p-3 group cursor-pointer">
-            <div className="relative h-[180px] overflow-hidden mb-4">
-              <Image
-                src="/event-3.webp"
-                alt="Participants"
-                fill
-                className="object-cover transition-transform"
-              />
-            </div>
-            <p className="text-[#85E408] text-sm font-medium px-3 pb-3">
-              Mendorong kolaborasi antara industri dan dunia pendidikan.
-            </p>
-          </div>
-
-          {/* Card 4 */}
-          <div className="bg-black p-3 group cursor-pointer">
-            <div className="relative h-[180px] overflow-hidden mb-4">
-              <Image
-                src="/event-4.webp"
-                alt="Training"
-                fill
-                className="object-cover transition-transform"
-              />
-            </div>
-            <p className="text-[#85E408] text-sm font-medium px-3 pb-3">
-              Membantu sekolah memetakan kemampuan peserta didiknya.
-            </p>
-          </div>
-        </div>
-
-        {/* Green CTA Section */}
-        <div className="bg-[#85E408] py-16 px-4  text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-black mb-8 uppercase">
-            KESERUAN TEKIRO MECHANIC COMPETITION 2025
-          </h2>
-          <div className="max-w-6xl mx-auto">
-            <iframe
-              className="w-full h-[400px] md:h-[500px]"
-              src="https://www.youtube.com/embed/IB6vJUaDbD0?rel=0"
-              title="Keseruan Tekiro Mechanic Competition 2025"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
           </div>
         </div>
       </div>
