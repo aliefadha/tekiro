@@ -69,34 +69,58 @@ export default function Footer() {
           {/* Official Store Section */}
           <h3 className="text-xl font-bold mb-6">OFFICIAL STORE</h3>
           <div className="flex items-center justify-between mb-10 max-w-xs">
-            <Image
-              src="/tokopedia.png"
-              alt="tokopedia"
-              width={65}
-              height={65}
-              className="object-contain"
-            />
-            <Image
-              src="/tiktok-shop.webp"
-              alt="tiktok shop"
-              width={50}
-              height={50}
-              className="object-contain"
-            />
-            <Image
-              src="/shopee.webp"
-              alt="shopee"
-              width={35}
-              height={35}
-              className="object-contain"
-            />
-            <Image
-              src="/lazada.png"
-              alt="lazada"
-              width={60}
-              height={60}
-              className="object-contain"
-            />
+            <Link
+              href="https://www.tokopedia.com/tekiro-rexco"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/tokopedia.png"
+                alt="tokopedia"
+                width={65}
+                height={65}
+                className="object-contain hover:opacity-80 transition-opacity"
+              />
+            </Link>
+            <Link
+              href="https://vt.tiktok.com/ZSa3Cy6kT/?page=Mall"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/tiktok-shop.webp"
+                alt="tiktok shop"
+                width={50}
+                height={50}
+                className="object-contain hover:opacity-80 transition-opacity"
+              />
+            </Link>
+            <Link
+              href="https://shopee.co.id/tekiroofficialshop"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/shopee.webp"
+                alt="shopee"
+                width={35}
+                height={35}
+                className="object-contain hover:opacity-80 transition-opacity"
+              />
+            </Link>
+            <Link
+              href="https://www.lazada.co.id/shop/tekiro-rexco/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Image
+                src="/lazada.png"
+                alt="lazada"
+                width={60}
+                height={60}
+                className="object-contain hover:opacity-80 transition-opacity"
+              />
+            </Link>
           </div>
 
           {/* Follow Us Section */}

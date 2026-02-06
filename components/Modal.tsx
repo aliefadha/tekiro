@@ -81,10 +81,12 @@ export default function Modal({
       role="dialog"
       aria-modal="true"
       aria-labelledby="modal-title"
+      onClick={onClose}
     >
       <div
         ref={modalRef}
         className="relative max-w-lg md:max-w-4xl transform transition-all duration-300 scale-100 opacity-100 flex flex-col max-h-screen"
+        onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
