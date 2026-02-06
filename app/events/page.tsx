@@ -129,6 +129,31 @@ export default function EventsPage() {
               </svg>
             </a>
           </div>
+
+          <div
+            className={`${montserrat.className} container mx-auto px-4 py-16`}
+          >
+            <h2 className="text-3xl font-bold mb-12 text-center uppercase border-b-4 border-black pb-2 w-auto mx-auto">
+              DIDUKUNG OLEH
+            </h2>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 max-w-6xl mx-auto items-center">
+              {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((num) => (
+                <div
+                  key={num}
+                  className="bg-white p-4 flex items-center justify-center"
+                >
+                  <Image
+                    src={`/sponsor${num}.webp`}
+                    alt={`Sponsor ${num}`}
+                    width={150}
+                    height={80}
+                    className="object-contain max-h-20"
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
 
