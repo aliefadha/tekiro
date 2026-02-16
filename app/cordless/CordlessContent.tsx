@@ -9,6 +9,7 @@ import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Marquee from "@/components/Marquee";
 import { useLatestProducts, useCordlessProducts } from "@/lib/queries";
+import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -117,7 +118,7 @@ export default function CordlessContent() {
           : cordlessProductCards.map((product) => (
               <div key={product.id} className="bg-[#EBF8F3]">
                 <div className="w-full h-56">
-                  <iframe className="w-full h-full" src={product.link} />
+                  <iframe className="w-full h-full" src={getYoutubeEmbedUrl(product.link)} />
                 </div>
                 <div className="p-10 text-center gap-5 flex flex-col">
                   <h2

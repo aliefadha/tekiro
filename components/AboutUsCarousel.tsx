@@ -55,7 +55,7 @@ export default function AboutUsCarousel() {
                         el: '.swiper-pagination-custom',
                     }}
                     modules={[Autoplay, Navigation, Pagination]}
-                    className="mySwiper w-full aspect-video max-w-[200px] lg:max-w-[600px] mx-auto"
+                    className="mySwiper w-full h-full"
                 >
                     <SwiperSlide className="relative h-full overflow-hidden group">
                         <iframe

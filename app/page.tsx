@@ -1,91 +1,155 @@
-"use client"
-import { useState } from "react";
+"use client";
+// import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Autoplay, EffectFade, } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "aos/dist/aos.css";
 import Marquee from "@/components/Marquee";
-import Modal from "@/components/Modal";
+// import Modal from "@/components/Modal";
 
-import 'swiper/css';
-import 'swiper/css/effect-fade';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/effect-fade";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 
-import { useLatestProducts } from '@/lib/queries';
+import { useLatestProducts } from "@/lib/queries";
 import { getImageUrl } from "@/lib/utils";
-import { ProductGridSkeleton } from '@/components/ui/Skeleton';
-
+import { ProductGridSkeleton } from "@/components/ui/Skeleton";
 
 export default function Home() {
-  const [isModalOpen, setIsModalOpen] = useState(true)
-  const { data: productsResponse, isLoading } = useLatestProducts()
+  // const [isModalOpen, setIsModalOpen] = useState(true)
+  const { data: productsResponse, isLoading } = useLatestProducts();
 
-  type Product = { id: string; name: string; images: string[] }
-  type ProductsResponse = { success: boolean; message: string; data: Product[] }
-  const products: Product[] = ((productsResponse as ProductsResponse | undefined)?.data || [])
+  type Product = { id: string; name: string; images: string[] };
+  type ProductsResponse = {
+    success: boolean;
+    message: string;
+    data: Product[];
+  };
+  const products: Product[] =
+    (productsResponse as ProductsResponse | undefined)?.data || [];
 
   return (
     <>
-      <Modal
+      {/* <Modal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         imageSrc="/modal.webp"
       >
-      </Modal>
+      </Modal> */}
 
       <div className="min-h-[87vh] object-contain bg-[url(/hero.webp)] bg-center bg-cover">
-        <div className={`font-montserrat bg-black/80 min-h-[87vh] flex flex-col items-center justify-end text-center pb-10 md:pb-16`}>
+        <div
+          className={`font-montserrat bg-black/80 min-h-[87vh] flex flex-col items-center justify-end text-center pb-10 md:pb-16`}
+        >
           <div className="flex flex-col justify-center text-center gap-10 pb-7">
-            <h1 className="text-white font-semibold text-3xl md:text-5xl uppercase">Precision. Reliability. <br />Power.<br />High-Performance.</h1>
+            <h1 className="text-white font-semibold text-3xl md:text-5xl uppercase">
+              Precision. Reliability. <br />
+              Power.
+              <br />
+              High-Performance.
+            </h1>
             <p className="text-white font-semibold max-w-5xl">
-              Tekiro® delivers precision, reliability, and high-performance tools for every task. From hand tools to cordless equipment, our products are built to tackle light repairs and heavy-duty challenges alike. Choose Tekiro® and experience tools designed to empower professionals and enthusiasts with unmatched durability and versatility.
+              Tekiro® delivers precision, reliability, and high-performance
+              tools for every task. From hand tools to cordless equipment, our
+              products are built to tackle light repairs and heavy-duty
+              challenges alike. Choose Tekiro® and experience tools designed to
+              empower professionals and enthusiasts with unmatched durability
+              and versatility.
             </p>
           </div>
-          <div className="border-b-2 border-b-white pb-4">
+          <Link href="/product" className="border-b-2 border-b-white pb-4">
             <h2 className="uppercase text-white text-xl">explore more</h2>
-          </div>
+          </Link>
         </div>
       </div>
 
       <div className="my-24 px-5 w-full max-w-[1300px] mx-auto grid grid-cols-1 md:grid-cols-3 gap-5">
         <div className="bg-[#EBF8F3]">
           <div className="w-full h-56">
-            <iframe className="w-full h-full" src="https://www.youtube.com/embed/UgdIQDv6rYk?controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=3&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fcontact%2F&vf=1" />
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/UgdIQDv6rYk?controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=3&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fcontact%2F&vf=1"
+            />
           </div>
           <div className="p-10 text-center gap-5 flex flex-col">
-            <h2 className={`font-montserrat font-bold uppercase text-2xl`}>Complete Tools in One Bundle</h2>
-            <p className={`font-montserrat text-sm pb-12`}>Tekiro® Simplify your workflow with a complete set that keeps everything organized and ready for action. Perfect for tackling any task efficiently and with ease.</p>
-            <div className="inline-block border-b-2 border-[#427402] mx-auto">
-              <h2 className={`font-montserrat text-xl font-semibold  uppercase`}>explore more</h2>
-            </div>
+            <h2 className={`font-montserrat font-bold uppercase text-2xl`}>
+              Complete Tools in One Bundle
+            </h2>
+            <p className={`font-montserrat text-sm pb-12`}>
+              Tekiro® Simplify your workflow with a complete set that keeps
+              everything organized and ready for action. Perfect for tackling
+              any task efficiently and with ease.
+            </p>
+            <Link
+              href="/product"
+              className="inline-block border-b-2 border-[#427402] mx-auto"
+            >
+              <h2
+                className={`font-montserrat text-xl font-semibold  uppercase`}
+              >
+                explore more
+              </h2>
+            </Link>
           </div>
         </div>
 
         <div className="bg-[#EBF8F3]">
           <div className="w-full h-56">
-            <iframe className="w-full h-full" src="https://www.youtube.com/embed/cZ9h1q-TpN8?controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=5&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fgallery%2F&vf=1" />
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/cZ9h1q-TpN8?controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=5&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fgallery%2F&vf=1"
+            />
           </div>
           <div className="p-10 text-center gap-5 flex flex-col">
-            <h2 className={`font-montserrat font-bold uppercase text-2xl`}>Strong & Spacious Storage</h2>
-            <p className={`font-montserrat text-sm pb-12`}>Tekiro® Maximize your workspace with a durable storage solution that provides ample space to keep your tools organized and easily accessible for every project.</p>
-            <div className="inline-block border-b-2 border-[#427402] mx-auto">
-              <h2 className={`font-montserrat text-xl font-semibold  uppercase`}>explore more</h2>
-            </div>
+            <h2 className={`font-montserrat font-bold uppercase text-2xl`}>
+              Strong & Spacious Storage
+            </h2>
+            <p className={`font-montserrat text-sm pb-12`}>
+              Tekiro® Maximize your workspace with a durable storage solution
+              that provides ample space to keep your tools organized and easily
+              accessible for every project.
+            </p>
+            <Link
+              href="/product"
+              className="inline-block border-b-2 border-[#427402] mx-auto"
+            >
+              <h2
+                className={`font-montserrat text-xl font-semibold  uppercase`}
+              >
+                explore more
+              </h2>
+            </Link>
           </div>
         </div>
 
         <div className="bg-[#EBF8F3]">
           <div className="w-full h-56">
-            <iframe className="w-full h-full" src="https://www.youtube.com/embed/b7maGr2I5zA?controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=7&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fgallery%2F&vf=1" />
+            <iframe
+              className="w-full h-full"
+              src="https://www.youtube.com/embed/b7maGr2I5zA?controls=0&rel=0&playsinline=0&cc_load_policy=0&autoplay=0&enablejsapi=1&origin=https%3A%2F%2Ftekiro.com&widgetid=7&forigin=https%3A%2F%2Ftekiro.com%2F&aoriginsup=1&gporigin=https%3A%2F%2Ftekiro.com%2Fgallery%2F&vf=1"
+            />
           </div>
           <div className="p-10 text-center gap-5 flex flex-col">
-            <h2 className={`font-montserrat font-bold uppercase text-2xl`}>Precision in Every Project</h2>
-            <p className={`font-montserrat text-sm pb-12`}>Tekiro® Achieve reliable, precise results in every project with tools designed to deliver strength and accuracy, ensuring smooth and efficient work.</p>
-            <div className="inline-block border-b-2 border-[#427402] mx-auto">
-              <h2 className={`font-montserrat text-xl font-semibold  uppercase`}>explore more</h2>
-            </div>
+            <h2 className={`font-montserrat font-bold uppercase text-2xl`}>
+              Precision in Every Project
+            </h2>
+            <p className={`font-montserrat text-sm pb-12`}>
+              Tekiro® Achieve reliable, precise results in every project with
+              tools designed to deliver strength and accuracy, ensuring smooth
+              and efficient work.
+            </p>
+            <Link
+              href="/product"
+              className="inline-block border-b-2 border-[#427402] mx-auto"
+            >
+              <h2
+                className={`font-montserrat text-xl font-semibold  uppercase`}
+              >
+                explore more
+              </h2>
+            </Link>
           </div>
         </div>
       </div>
@@ -94,66 +158,122 @@ export default function Home() {
         <div className="w-full md:w-3/5 relative bg-black min-h-[300px] md:min-h-0 overflow-hidden">
           <iframe
             className="absolute top-1/2 left-1/2 w-[150%] h-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"
-            src="https://www.youtube.com/embed/Mf0IkX02gM0?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1"
+            src="https://www.youtube.com/embed/Mf0IkX02gM0?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1&playlist=Mf0IkX02gM0"
           />
         </div>
 
         <div className="w-full md:w-2/5 bg-black z-10 p-4 md:p-0">
           <div className="bg-[#85E408] w-full max-w-none p-6 md:px-12 md:py-24 flex flex-col gap-5 md:-ms-24 my-0 md:my-24 ">
-            <h2 className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}>Tekiro®<br />
+            <h2
+              className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}
+            >
+              Tekiro®
+              <br />
               FOR EVERYTHING & EVERYONE.
             </h2>
-            <p className={`font-montserrat text-sm w-3/4 font-medium`} >Whether you’re a professional, hobbyist, or DIY enthusiast, Tekiro provides the tools you can trust for all kinds of projects. From simple repairs to complex tasks, we equip you with the reliability, precision, and performance needed to get the job done—no matter the scale. Tekiro® is built for all, designed for everything.</p>
-            <h2 className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] `}>find yours</h2>
+            <p className={`font-montserrat text-sm w-3/4 font-medium`}>
+              Whether you’re a professional, hobbyist, or DIY enthusiast, Tekiro
+              provides the tools you can trust for all kinds of projects. From
+              simple repairs to complex tasks, we equip you with the
+              reliability, precision, and performance needed to get the job
+              done—no matter the scale. Tekiro® is built for all, designed for
+              everything.
+            </p>
+            <Link
+              href="/product"
+              className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] `}
+            >
+              find yours
+            </Link>
           </div>
         </div>
       </div>
 
       <div className="p-6 md:p-24 flex flex-col gap-10">
-        <h2 className={`font-montserrat font-bold uppercase text-3xl text-center md:text-left`}>latest product</h2>
+        <h2
+          className={`font-montserrat font-bold uppercase text-3xl text-center md:text-left`}
+        >
+          latest product
+        </h2>
         {isLoading ? (
           <ProductGridSkeleton />
         ) : (
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-8">
-            {products.map((product: { id: string; name: string; images: string[] }) => (
-              <Link key={product.id} href={`/product/${product.id}`} className="h-full">
-                <div className="h-full flex flex-col">
-                  <div className="relative flex-shrink-0 aspect-[2/3]">
-                    <Image
-                      src={getImageUrl(product.images[0]) || '/placeholder.webp'}
-                      alt={product.name}
-                      fill
-                      priority
-                      sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 14vw"
-                      className="object-cover border border-black"
-                    />
+            {products.map(
+              (product: { id: string; name: string; images: string[] }) => (
+                <Link
+                  key={product.id}
+                  href={`/product/${product.id}`}
+                  className="h-full"
+                >
+                  <div className="h-full flex flex-col">
+                    <div className="relative flex-shrink-0 aspect-[2/3]">
+                      <Image
+                        src={
+                          getImageUrl(product.images[0]) || "/placeholder.webp"
+                        }
+                        alt={product.name}
+                        fill
+                        priority
+                        sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 14vw"
+                        className="object-cover border border-black"
+                      />
+                    </div>
+                    <div className="flex flex-col flex-grow justify-between gap-2 p-2.5">
+                      <h2
+                        className={`font-montserrat uppercase text-[#6EC1E4]`}
+                      >
+                        {product.name}
+                      </h2>
+                      <p
+                        className={`font-roboto text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium mt-auto`}
+                      >
+                        Read more
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex flex-col flex-grow justify-between gap-2 p-2.5">
-                    <h2 className={`font-montserrat uppercase text-[#6EC1E4]`}>{product.name}</h2>
-                    <p className={`font-roboto text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium mt-auto`}>Read more</p>
-                  </div>
-                </div>
-              </Link>
-            ))}
+                </Link>
+              ),
+            )}
           </div>
         )}
-        <Link href="/product" className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] mx-auto `}>all products</Link>
+        <Link
+          href="/product"
+          className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] mx-auto `}
+        >
+          all products
+        </Link>
       </div>
 
       <div className="flex flex-col md:flex-row w-full h-auto md:h-[658px] relative">
         <div className="w-full md:w-2/5 bg-black z-10 p-4 md:p-0">
           <div className="bg-[#85E408] w-full max-w-none p-6 md:px-12 md:py-24 flex flex-col gap-5 md:ml-24 my-0 md:my-24 ">
-            <h2 className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}>Tekiro®<br />
+            <h2
+              className={`font-montserrat font-bold uppercase text-2xl md:text-3xl`}
+            >
+              Tekiro®
+              <br />
               CATALOGUE &<br /> COLLECTIONS
             </h2>
-            <p className={`font-montserrat text-sm w-3/4 font-medium`} >Explore the complete range of Tekiro® tools, from hand tools to power equipment, designed to meet the needs of every project. Our catalog offers everything from everyday essentials to specialized solutions, ensuring you have access to the best quality tools for all your tasks.</p>
-            <Link href="/e-catalogue" className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] `}>show more</Link>
+            <p className={`font-montserrat text-sm w-3/4 font-medium`}>
+              Explore the complete range of Tekiro® tools, from hand tools to
+              power equipment, designed to meet the needs of every project. Our
+              catalog offers everything from everyday essentials to specialized
+              solutions, ensuring you have access to the best quality tools for
+              all your tasks.
+            </p>
+            <Link
+              href="/e-catalogue"
+              className={`font-montserrat text-xl font-semibold uppercase underline underline-offset-8 decoration-[#427402] `}
+            >
+              show more
+            </Link>
           </div>
         </div>
 
         <div className="w-full md:w-3/5 relative bg-black h-[200px] md:h-[658px]">
           <Swiper
-            effect={'fade'}
+            effect={"fade"}
             centeredSlides={true}
             autoplay={{
               delay: 2500,
@@ -198,4 +318,3 @@ export default function Home() {
     </>
   );
 }
-

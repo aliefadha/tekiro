@@ -7,6 +7,7 @@ import AOSInit from "@/components/AOSInit";
 import { Providers } from "@/lib/providers";
 import { ErrorBoundary } from "@/components/ErrorBoundary";
 import SkipLink from "@/components/SkipLink";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -60,6 +61,7 @@ export default function RootLayout({
         <Providers>
           <AOSInit />
           <SkipLink />
+          <ScrollToTop />
           <Navbar />
           <ErrorBoundary>
             <main id="main-content">

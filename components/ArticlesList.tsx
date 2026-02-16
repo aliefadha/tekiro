@@ -52,8 +52,16 @@ export default function ArticlesList({ initialArticles }: ArticlesListProps) {
       if (response.data.length === 0) {
         setHasMore(false);
       } else {
-        setArticles([...articles, ...response.data]);
-        setPage(page + 1);
+        setArticles(prev => {
+          const existingIds = new Set(prev.map(a => a.id));
+          const newArticles = response.data.filter(a => !existingIds.has(a.id));
+          if (newArticles.length === 0) {
+            setHasMore(false);
+            return prev;
+          }
+          setPage(p => p + 1);
+          return [...prev, ...newArticles];
+        });
         if (response.data.length < 6) {
           setHasMore(false);
         }

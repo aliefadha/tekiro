@@ -1,5 +1,8 @@
+"use client";
+
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
+import { useState } from "react";
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -7,6 +10,32 @@ const montserrat = Montserrat({
 });
 
 export default function ContactPage() {
+    const [formData, setFormData] = useState({
+        name: "",
+        email: "",
+        phone: "",
+        address: "",
+        purpose: "",
+        message: ""
+    });
+
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        const subject = encodeURIComponent(`Contact Form - ${formData.purpose || 'General Inquiry'}`);
+        const body = encodeURIComponent(
+            `Name: ${formData.name}\n` +
+            `Email: ${formData.email}\n` +
+            `Phone: ${formData.phone}\n` +
+            `Address: ${formData.address}\n` +
+            `Purpose: ${formData.purpose}\n\n` +
+            `Message:\n${formData.message}`
+        );
+        window.location.href = `mailto:info@tekiro.id?subject=${subject}&body=${body}`;
+    };
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setFormData(prev => ({ ...prev, [e.target.id]: e.target.value }));
+    };
     return (
         <>
             <div className="h-[60vh] lg:h-[40vh] object-contain bg-[url(/product-hero.webp)] bg-center relative">
@@ -17,60 +46,69 @@ export default function ContactPage() {
                 <div className="absolute left-1/2 -translate-x-1/2 top-[15vh] w-full max-w-4xl px-4 z-10">
                     <div className="bg-black shadow-2xl p-8 border-4 border-[#85E408] rounded-none">
                         <h1 className={`${montserrat.className} text-4xl font-medium text-center mb-4 text-white uppercase`}>Contact</h1>
-                        <form className="space-y-2">
+                        <form className="space-y-2" onSubmit={handleSubmit}>
                             {/* Name */}
                             <div>
                                 <label htmlFor="name" className="block font-medium text-white mb-2">Your Name</label>
-                                <input
-                                    type="text"
-                                    id="name"
-                                    placeholder="Your Name"
-                                    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
-                                />
+<input
+    type="text"
+    id="name"
+    value={formData.name}
+    onChange={handleChange}
+    placeholder="Your Name"
+    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+/>
                             </div>
 
                             {/* Email & Phone */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
                                     <label htmlFor="email" className="block font-medium text-white mb-2">Your Email</label>
-                                    <input
-                                        type="email"
-                                        id="email"
-                                        placeholder="Your Email"
-                                        className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
-                                    />
+<input
+    type="email"
+    id="email"
+    value={formData.email}
+    onChange={handleChange}
+    placeholder="Your Email"
+    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+/>
                                 </div>
                                 <div>
                                     <label htmlFor="phone" className="block font-medium text-white mb-2">Your Phone Number</label>
-                                    <input
-                                        type="tel"
-                                        id="phone"
-                                        placeholder="Your Phone Number"
-                                        className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
-                                    />
+<input
+    type="tel"
+    id="phone"
+    value={formData.phone}
+    onChange={handleChange}
+    placeholder="Your Phone Number"
+    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+/>
                                 </div>
                             </div>
 
                             {/* Address */}
                             <div>
                                 <label htmlFor="address" className="block font-medium text-white mb-2">Your Address</label>
-                                <input
-                                    type="text"
-                                    id="address"
-                                    placeholder="Your Address"
-                                    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
-                                />
+<input
+    type="text"
+    id="address"
+    value={formData.address}
+    onChange={handleChange}
+    placeholder="Your Address"
+    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+/>
                             </div>
 
                             {/* Purpose */}
                             <div>
                                 <label htmlFor="purpose" className="block font-medium text-white mb-2">Your Purpose</label>
                                 <div className="relative">
-                                    <select
-                                        id="purpose"
-                                        className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white focus:outline-none focus:ring-2 focus:ring-[#85E408] appearance-none"
-                                        defaultValue=""
-                                    >
+<select
+    id="purpose"
+    value={formData.purpose}
+    onChange={handleChange}
+    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white focus:outline-none focus:ring-2 focus:ring-[#85E408] appearance-none"
+>
                                         <option value="" disabled>Where to Buy</option>
                                         <option value="support">Customer Support</option>
                                         <option value="inquiry">General Inquiry</option>
@@ -84,12 +122,14 @@ export default function ContactPage() {
                             {/* Message */}
                             <div>
                                 <label htmlFor="message" className="block font-medium text-white mb-2">Your Message</label>
-                                <textarea
-                                    id="message"
-                                    rows={5}
-                                    placeholder="Your Message"
-                                    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] resize-none"
-                                ></textarea>
+<textarea
+    id="message"
+    value={formData.message}
+    onChange={handleChange}
+    rows={5}
+    placeholder="Your Message"
+    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] resize-none"
+></textarea>
                             </div>
 
                             {/* Button */}
