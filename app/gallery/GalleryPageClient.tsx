@@ -4,6 +4,7 @@ import { useState } from "react";
 import { Montserrat } from "next/font/google";
 import MasonryGallery from "@/components/MasonryGallery";
 import { useGallery, useInstagram } from "@/lib/queries";
+import Image from "next/image";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -92,7 +93,7 @@ export default function GalleryPageClient() {
                     rel="noopener noreferrer"
                     className="aspect-square overflow-hidden rounded-lg block"
                   >
-                    <img
+                    <Image
                       src={item.image}
                       alt={item.title}
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
@@ -103,7 +104,7 @@ export default function GalleryPageClient() {
 
               <div className="flex justify-center mt-8">
                 <a
-                  href="https://instagram.com/tekiro-tools"
+                  href="https://instagram.com/tekiro_tools"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-3 p-4 text-center font-bold transition-colors duration-200 cursor-pointer text-white bg-black hover:bg-gray-800"
