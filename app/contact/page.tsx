@@ -3,6 +3,8 @@
 import { Montserrat } from "next/font/google";
 import Link from "next/link";
 import { useState } from "react";
+import { useApiMutation } from "@/lib/api-hooks";
+import { apiClient } from "@/lib/api-client";
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
@@ -18,21 +20,60 @@ export default function ContactPage() {
     purpose: "",
     message: "",
   });
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const validateForm = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim()) {
+      newErrors.name = "Name is required";
+    }
+
+    if (!formData.email.trim()) {
+      newErrors.email = "Email is required";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formData.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    }
+
+    if (!formData.message.trim()) {
+      newErrors.message = "Message is required";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const contactMutation = useApiMutation(
+    async (data: typeof formData) => {
+      const response = await apiClient.post('/contact/contact-us', data);
+      return response;
+    },
+    {
+      onSuccess: () => {
+        setFormData({
+          name: "",
+          email: "",
+          phone: "",
+          address: "",
+          purpose: "",
+          message: "",
+        });
+      },
+    }
+  );
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(
-      `Contact Form - ${formData.purpose || "General Inquiry"}`,
-    );
-    const body = encodeURIComponent(
-      `Name: ${formData.name}\n` +
-        `Email: ${formData.email}\n` +
-        `Phone: ${formData.phone}\n` +
-        `Address: ${formData.address}\n` +
-        `Purpose: ${formData.purpose}\n\n` +
-        `Message:\n${formData.message}`,
-    );
-    window.location.href = `mailto:tekirotools.indonesia@gmail.com?subject=${subject}&body=${body}`;
+    
+    if (!validateForm()) {
+      return;
+    }
+
+    contactMutation.mutate(formData);
   };
 
   const handleChange = (
@@ -40,7 +81,15 @@ export default function ContactPage() {
       HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
     >,
   ) => {
-    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+    const { id, value } = e.target;
+    setFormData((prev) => ({ ...prev, [id]: value }));
+    if (errors[id]) {
+      setErrors((prev) => {
+        const newErrors = { ...prev };
+        delete newErrors[id];
+        return newErrors;
+      });
+    }
   };
   return (
     <>
@@ -72,8 +121,11 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   placeholder="Your Name"
-                  className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+                  className={`w-full px-4 py-3 bg-[#696969] border rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] ${errors.name ? "border-red-500" : "border-none"}`}
                 />
+                {errors.name && (
+                  <p className="text-red-400 text-sm mt-1">{errors.name}</p>
+                )}
               </div>
 
               {/* Email & Phone */}
@@ -91,8 +143,11 @@ export default function ContactPage() {
                     value={formData.email}
                     onChange={handleChange}
                     placeholder="Your Email"
-                    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+                    className={`w-full px-4 py-3 bg-[#696969] border rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] ${errors.email ? "border-red-500" : "border-none"}`}
                   />
+                  {errors.email && (
+                    <p className="text-red-400 text-sm mt-1">{errors.email}</p>
+                  )}
                 </div>
                 <div>
                   <label
@@ -107,8 +162,11 @@ export default function ContactPage() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="Your Phone Number"
-                    className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408]"
+                    className={`w-full px-4 py-3 bg-[#696969] border rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] ${errors.phone ? "border-red-500" : "border-none"}`}
                   />
+                  {errors.phone && (
+                    <p className="text-red-400 text-sm mt-1">{errors.phone}</p>
+                  )}
                 </div>
               </div>
 
@@ -177,17 +235,33 @@ export default function ContactPage() {
                   onChange={handleChange}
                   rows={5}
                   placeholder="Your Message"
-                  className="w-full px-4 py-3 bg-[#696969] border-none rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] resize-none"
+                  className={`w-full px-4 py-3 bg-[#696969] border rounded-sm text-white placeholder-gray-300 focus:outline-none focus:ring-2 focus:ring-[#85E408] resize-none ${errors.message ? "border-red-500" : "border-none"}`}
                 ></textarea>
+                {errors.message && (
+                  <p className="text-red-400 text-sm mt-1">{errors.message}</p>
+                )}
               </div>
+
+              {/* Status Messages */}
+              {contactMutation.isSuccess && (
+                <div className="text-center text-[#85E408] font-medium">
+                  Message sent successfully!
+                </div>
+              )}
+              {contactMutation.isError && (
+                <div className="text-center text-red-400 font-medium">
+                  Failed to send message. Please try again.
+                </div>
+              )}
 
               {/* Button */}
               <div className="text-center pt-4">
                 <button
                   type="submit"
-                  className={`${montserrat.className} text-[#85E408] hover:text-[#76c907] text-xl font-medium pb-2 border-b-4 border-[#85E408] transition-colors duration-300 uppercase px-8`}
+                  disabled={contactMutation.isLoading}
+                  className={`${montserrat.className} text-[#85E408] hover:text-[#76c907] text-xl font-medium pb-2 border-b-4 border-[#85E408] transition-colors duration-300 uppercase px-8 disabled:opacity-50 disabled:cursor-not-allowed`}
                 >
-                  Send
+                  {contactMutation.isLoading ? "Sending..." : "Send"}
                 </button>
               </div>
             </form>
