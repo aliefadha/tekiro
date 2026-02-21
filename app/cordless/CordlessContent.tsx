@@ -8,7 +8,7 @@ import ProductImageCarousel from "../../components/ProductImageCarousel";
 import { Montserrat } from "next/font/google";
 import Image from "next/image";
 import Marquee from "@/components/Marquee";
-import { useLatestProducts, useCordlessProducts } from "@/lib/queries";
+import { useProductsByCategory, useCordlessProducts } from "@/lib/queries";
 import { getYoutubeEmbedUrl } from "@/lib/utils";
 
 const montserrat = Montserrat({
@@ -25,26 +25,46 @@ export const metadata: Metadata = {
 const cordlessProducts: CordlessProduct[] = [
   {
     id: 1,
-    title: 'IMPACT WRENCH CORDLESS 1/2" XV BRUSHLESS 20V',
-    description:
-      "This product is designed to quickly and powerfully tighten and loosen bolts. Since it is cordless and powered by a battery, it is more convenient to use and eliminates the need to search for a power source.",
+    title: "Compact Impact Driver XV Brushless 20V",
     videoUrl:
-      "https://www.youtube.com/embed/RnAEaZqy_uw?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+      "https://www.youtube.com/embed/86kITq2tPv4?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
   },
   {
     id: 2,
-    title: 'DRILL CORDLESS 1/2" XV BRUSHLESS 20V',
-    description:
-      "Professional-grade cordless drill designed for precision drilling and screwdriving tasks. Features brushless motor technology for longer battery life and increased torque output.",
+    title: 'Impact Wrench 1/2" XV Brushless 20V',
     videoUrl:
-      "https://www.youtube.com/embed/RnAEaZqy_uw?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+      "https://www.youtube.com/embed/ndXQC8_M-pA?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+  },
+  {
+    id: 3,
+    title: "Rotary Hammer SDS Plus XV Brushless 20 V",
+    videoUrl:
+      "https://www.youtube.com/embed/9mCHDJTBonY?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+  },
+  {
+    id: 4,
+    title: "Hammer Drill XV 13 MM Brushless 20V",
+    videoUrl:
+      "https://www.youtube.com/embed/czU-yHhMfs0?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+  },
+  {
+    id: 5,
+    title: "Hammer Drill CV 10 MM 12V",
+    videoUrl:
+      "https://www.youtube.com/embed/rNzRgakHifM?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+  },
+  {
+    id: 6,
+    title: "Hammer Drill XV 13 MM 20V",
+    videoUrl:
+      "https://www.youtube.com/embed/tKmESbmwCNg?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
   },
 ];
 
 export default function CordlessContent() {
-  const { data: latestProductsResponse, isLoading: isLatestLoading } =
-    useLatestProducts();
-  const latestProducts = (latestProductsResponse?.data || []) as Array<{
+  const { data: categoryProductsResponse, isLoading: isCategoryLoading } =
+    useProductsByCategory("cmlvva2qz00000ip8ypkzh2gp");
+  const categoryProducts = (categoryProductsResponse?.data || []) as Array<{
     id: string;
     name: string;
     images: string[];
@@ -69,8 +89,8 @@ export default function CordlessContent() {
           our product
         </h2>
         <ProductImageCarousel
-          products={latestProducts}
-          isLoading={isLatestLoading}
+          products={categoryProducts}
+          isLoading={isCategoryLoading}
         />
       </div>
       <div>
@@ -118,7 +138,10 @@ export default function CordlessContent() {
           : cordlessProductCards.map((product) => (
               <div key={product.id} className="bg-[#EBF8F3]">
                 <div className="w-full h-56">
-                  <iframe className="w-full h-full" src={getYoutubeEmbedUrl(product.link)} />
+                  <iframe
+                    className="w-full h-full"
+                    src={getYoutubeEmbedUrl(product.link)}
+                  />
                 </div>
                 <div className="p-10 text-center gap-5 flex flex-col">
                   <h2
