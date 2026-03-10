@@ -9,6 +9,7 @@ import Link from 'next/link';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import { getImageUrl } from '@/lib/utils';
 
 const montserrat = Montserrat({
     variable: "--font-montserrat",
@@ -54,11 +55,12 @@ export default function BlogSidebarCarousel({ posts }: BlogSidebarCarouselProps)
                             <div className="w-full flex flex-col items-center gap-4">
                                 <div className="w-full flex flex-col items-center gap-4">
                                     <Image
-                                        src={post.imageSrc || post.primaryImage || '/blog-1.webp'}
+                                        src={getImageUrl(post.imageSrc || '') || getImageUrl(post.primaryImage || '') || '/blog-1.webp'}
                                         alt={post.imageAlt || post.title}
                                         width={300}
                                         height={180}
                                         className="w-full h-[180px] mx-auto object-cover"
+                                        priority={posts.indexOf(post) === 0}
                                     />
                                     <h3 className={`${montserrat.className} font-bold uppercase text-sm text-[#85E408] line-clamp-3 px-2`}>
                                         {post.title}
