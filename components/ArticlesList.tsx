@@ -4,7 +4,6 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Montserrat, Roboto } from "next/font/google";
-import { getArticles } from "@/lib/server-api";
 import { getImageUrl } from "@/lib/utils";
 
 const montserrat = Montserrat({
@@ -39,44 +38,22 @@ interface ArticlesListProps {
   initialArticles: Article[];
 }
 
-export default function ArticlesList({ initialArticles }: ArticlesListProps) {
-  const [articles, setArticles] = useState<Article[]>(initialArticles);
-  const [page, setPage] = useState(2);
-  const [hasMore, setHasMore] = useState(true);
-  const [loading, setLoading] = useState(false);
+const ITEMS_PER_PAGE = 6;
 
-  const handleLoadMore = async () => {
-    setLoading(true);
-    try {
-      const response = await getArticles(6, page);
-      if (response.data.length === 0) {
-        setHasMore(false);
-      } else {
-        setArticles(prev => {
-          const existingIds = new Set(prev.map(a => a.id));
-          const newArticles = response.data.filter(a => !existingIds.has(a.id));
-          if (newArticles.length === 0) {
-            setHasMore(false);
-            return prev;
-          }
-          setPage(p => p + 1);
-          return [...prev, ...newArticles];
-        });
-        if (response.data.length < 6) {
-          setHasMore(false);
-        }
-      }
-    } catch (error) {
-      console.error("Error loading more articles:", error);
-    } finally {
-      setLoading(false);
-    }
+export default function ArticlesList({ initialArticles }: ArticlesListProps) {
+  const [visibleCount, setVisibleCount] = useState(ITEMS_PER_PAGE);
+
+  const displayedArticles = initialArticles.slice(0, visibleCount);
+  const hasMore = visibleCount < initialArticles.length;
+
+  const handleLoadMore = () => {
+    setVisibleCount((prev) => prev + ITEMS_PER_PAGE);
   };
 
   return (
     <>
       <div className="py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {articles.map((post) => (
+        {displayedArticles.map((post) => (
           <div
             key={post.id}
             className="bg-black px-2.5 pt-2.5 pb-8 text-center flex flex-col justify-between items-center rounded-sm gap-5 border-4 hover:border-[#85E408] transition-all duration-300 h-full min-h-[600px]"
@@ -117,10 +94,9 @@ export default function ArticlesList({ initialArticles }: ArticlesListProps) {
         <div className="flex justify-center w-full ">
           <button
             onClick={handleLoadMore}
-            disabled={loading}
-            className={`${roboto.className} border-b-2 hover:bg-black py-3 px-4 hover:text-[#85E408] text-center rounded-xs font-medium uppercase transition-all duration-1000 ${loading ? "opacity-50 cursor-not-allowed" : ""}`}
+            className={`${roboto.className} border-b-2 hover:bg-black py-3 px-4 hover:text-[#85E408] text-center rounded-xs font-medium uppercase transition-all duration-1000`}
           >
-            {loading ? "Loading..." : "load more"}
+            load more
           </button>
         </div>
       )}
