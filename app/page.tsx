@@ -41,7 +41,7 @@ export default function Home() {
 
       <div className="min-h-[87vh] object-contain bg-[url(/hero.webp)] bg-center bg-cover">
         <div
-          className={`font-montserrat bg-black/80 min-h-[87vh] flex flex-col items-center justify-end text-center pb-10 md:pb-16`}
+          className={`font-montserrat bg-black/80 min-h-[87vh] flex flex-col items-center justify-center text-center pb-10 md:pb-16`}
         >
           <div className="flex flex-col justify-center text-center gap-10 pb-7">
             <h1 className="text-white font-semibold text-3xl md:text-5xl uppercase">
