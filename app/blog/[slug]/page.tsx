@@ -160,9 +160,7 @@ export default async function BlogDetailPage({
       <div className="my-16 w-4/5 mx-auto">
         <div className="flex flex-col lg:flex-row gap-12">
           <div className="lg:w-2/3">
-            <article
-              className={`${roboto.className} prose prose-lg max-w-none`}
-            >
+            <article className="blog-content max-w-none">
               <div dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
             </article>
 
@@ -230,7 +228,7 @@ export default async function BlogDetailPage({
           </div>
 
           {relatedPosts.length > 0 && (
-            <aside className="lg:w-1/3 bg-[#85E408] p-6 rounded-md">
+            <aside className="lg:w-1/3 self-start bg-[#85E408] p-6 rounded-md">
               <div className="">
                 <h2
                   className={`${montserrat.className} font-bold text-xl uppercase mb-6 pb-3 border-b-2 border-black`}
