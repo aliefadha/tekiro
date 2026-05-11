@@ -27,7 +27,7 @@ const cordlessProducts: CordlessProduct[] = [
     id: 1,
     title: "Compact Impact Driver XV Brushless 20V",
     videoUrl:
-      "https://www.youtube.com/embed/86kITq2tPv4?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
+      "https://www.youtube.com/embed/86klTq2tPv4?autoplay=1&loop=1&mute=1&controls=0&rel=0&modestbranding=1",
   },
   {
     id: 2,
