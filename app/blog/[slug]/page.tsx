@@ -17,6 +17,8 @@ const roboto = Roboto({
   subsets: ["latin"],
 });
 
+export const dynamic = "force-dynamic";
+
 export async function generateMetadata({
   params,
 }: {
