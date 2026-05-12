@@ -62,17 +62,17 @@ export default function ArticlesList({ initialArticles }: ArticlesListProps) {
               <Image
                 src={getImageUrl(post.primaryImage)}
                 alt={post.title}
-                width={250}
-                height={350}
-                className="w-full h-[350px] mx-auto object-cover"
+                width={150}
+                height={250}
+                className="w-full h-[250px] mx-auto object-cover"
               />
               <h1
-                className={`${montserrat.className} font-bold uppercase text-2xl text-[#85E408] grow min-h-20`}
+                className={`${montserrat.className} font-bold uppercase text-[#85E408] grow min-h-20`}
               >
                 {post.title}
               </h1>
               <p
-                className={`${montserrat.className} font-semibold text-white grow min-h-[100px]`}
+                className={`${montserrat.className} font-semibold text-white text-sm grow min-h-[100px] line-clamp-4`}
               >
                 {post.excerpt}
               </p>
