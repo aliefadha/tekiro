@@ -58,14 +58,22 @@ export async function getGallery() {
 }
 
 export async function getInstagram() {
-  return apiClient.get<
-    Array<{
+  return apiClient.get<{
+    posts: Array<{
       id: string;
       title: string;
       link: string;
       image: string;
-    }>
-  >("/instagram");
+      created_at?: string;
+    }>;
+    paging?: {
+      cursors?: {
+        before: string;
+        after: string;
+      };
+      next: string;
+    };
+  }>("/instagram");
 }
 
 export async function getLatestProducts() {

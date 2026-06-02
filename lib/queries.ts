@@ -133,12 +133,22 @@ export function useGallery() {
 export function useInstagram() {
   return useApiGet(
     ['instagram'],
-    () => apiClient.get<Array<{
-      id: string
-      title: string
-      link: string
-      image: string
-    }>>('/instagram'),
+    () => apiClient.get<{
+      posts: Array<{
+        id: string
+        title: string
+        link: string
+        image: string
+        created_at?: string
+      }>
+      paging?: {
+        cursors?: {
+          before: string
+          after: string
+        }
+        next: string
+      }
+    }>('/instagram'),
     {
       staleTime: 1000 * 60 * 5,
     }

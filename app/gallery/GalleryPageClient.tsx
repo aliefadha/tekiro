@@ -20,7 +20,7 @@ export default function GalleryPageClient() {
     useInstagram();
 
   const galleryData = galleryResponse?.data || [];
-  const instagramData = instagramResponse?.data || [];
+  const instagramData = instagramResponse?.data?.posts || [];
   const galleryImages = galleryData.map((item) => item.image);
 
   const handleViewChange = (view: "gallery" | "instagram") => {
@@ -91,11 +91,12 @@ export default function GalleryPageClient() {
                     href={item.link}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="aspect-square overflow-hidden rounded-lg block"
+                    className="aspect-square overflow-hidden rounded-lg block relative"
                   >
                     <Image
                       src={item.image}
                       alt={item.title}
+                      fill
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                   </a>
