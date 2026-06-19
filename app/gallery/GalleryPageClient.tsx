@@ -97,6 +97,7 @@ export default function GalleryPageClient() {
                       src={item.image}
                       alt={item.title}
                       fill
+                      unoptimized
                       className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
                     />
                   </a>
