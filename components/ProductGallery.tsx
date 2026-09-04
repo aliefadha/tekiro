@@ -16,7 +16,7 @@ interface ProductGalleryProps {
 export default function ProductGallery({
   images,
   productName,
-  zoomLevel = 1.5,
+  zoomLevel = 1.1,
   className = ''
 }: ProductGalleryProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0)
