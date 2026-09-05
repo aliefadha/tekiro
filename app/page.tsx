@@ -207,33 +207,28 @@ export default function Home() {
                   className="h-full"
                 >
                   <div className="h-full flex flex-col">
-                    <div className="relative flex-shrink-0 aspect-[2/3]">
+                    <div className="relative flex-shrink-0 aspect-[2/3] border border-black bg-white overflow-hidden p-2">
                       <Image
                         src={
                           getImageUrl(product.images[0]) || "/placeholder.webp"
                         }
                         alt={product.name}
                         fill
-                        priority
                         sizes="(max-width: 768px) 50vw, (max-width: 1200px) 25vw, 14vw"
-                        className="object-cover border border-black"
+                        className="object-contain"
                       />
                     </div>
                     <div className="flex flex-col flex-grow justify-between gap-2 p-2.5">
-                      <h2
-                        className={`font-montserrat uppercase text-[#6EC1E4]`}
-                      >
+                      <h2 className="font-montserrat uppercase text-[#6EC1E4]">
                         {product.name}
                       </h2>
-                      <p
-                        className={`font-roboto text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium mt-auto`}
-                      >
+                      <p className="font-roboto text-center py-2.5 px-4 bg-[#e9e6ed] rounded-sm font-medium mt-auto">
                         Read more
                       </p>
                     </div>
                   </div>
                 </Link>
-              ),
+              )
             )}
           </div>
         )}

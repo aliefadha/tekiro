@@ -77,16 +77,16 @@ function FAQSection() {
 export default function EventsPage() {
   return (
     <>
-      <div className="min-h-[500px] w-full bg-black relative overflow-hidden">
-        <iframe
-          className="absolute top-0 left-0 w-full h-full"
-          src="https://www.youtube.com/embed/bT63Ag44sFo?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=bT63Ag44sFo"
-          title="Tekiro Mechanic Competition 2025"
-          frameBorder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        ></iframe>
-      </div>
+    <div className="min-h-[500px] w-full bg-black relative overflow-hidden">
+      <iframe
+        className="absolute top-0 left-0 w-full h-full"
+        src="https://www.youtube.com/embed/lie3sWILxhU?autoplay=1&mute=1&controls=0&rel=0&modestbranding=1&loop=1&playlist=lie3sWILxhU,Xus8Y36WClA"
+        title="Tekiro Competition Mechanic 2026 Se-Indonesia"
+        frameBorder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowFullScreen
+      ></iframe>
+    </div>
 
       <div className="relative">
         <div
